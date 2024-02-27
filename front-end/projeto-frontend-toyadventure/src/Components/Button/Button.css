@@ -1,0 +1,67 @@
+.btn-primary {
+    font-size: 16;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #D7F3F3;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #B8E9E9;
+    color: #000;
+}
+
+.btn-secondary {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #A39BA8;
+    color: #FFF;
+    border: none;
+}
+
+.btn-secondary:hover {
+    color: #333;
+    background-color: #FFF;
+    border: 1px solid #A39BA8;
+}
+
+.btn-success {
+    font-size: 16;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: #FB8351;
+    border: none;
+
+}
+
+.btn-danger-yes {
+    background-color: #23CE6B;
+    padding: 4px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+}
+
+.btn-danger-no {
+    border: none;
+    background-color: #EF233C;
+    padding: 4px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-add {
+    font-size: 16;
+    font-weight: bold;
+    padding: 8px 8px;
+    border-radius: 8px;
+    background-color: #ADD4D3;
+    border: none;
+}
