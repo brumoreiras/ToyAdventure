@@ -3,6 +3,7 @@ import './Alert.css'
 export default function Alert({ titulo, texto, botoes }) {
     return (
         <div className="container__Alert">
+            
             <h1 className='titulo'>{titulo}</h1>
             <p className='paragrafo'>{texto}</p>
             <div className='button'>
