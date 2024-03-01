@@ -5,7 +5,7 @@ import FormsChange from './Pages/Formulario Alterar/FormsChange.js';
 function App() {
   return (
     <div className="App">
-      <FormsChange className='teste1' />
+     <FormsChange/>
     </div>
   );
 }
