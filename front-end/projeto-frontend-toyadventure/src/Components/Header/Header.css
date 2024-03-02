@@ -1,17 +1,17 @@
 .container__header {
-    box-sizing: border-box;
     width: 95vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px;
-/*     border: 1px solid white; */
+    /*     border: 1px solid white; */
 }
-.user__name{
+
+.user__name {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 24px;
+    gap: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: #D9D9D9;
 }

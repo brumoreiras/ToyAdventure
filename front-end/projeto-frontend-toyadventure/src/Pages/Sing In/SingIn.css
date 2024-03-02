@@ -1,0 +1,64 @@
+.container__page {
+    display: flex;
+    margin: 2% auto;
+}
+
+.container__register {
+    width: 941px;
+    height: 724px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    background-color: #FFFF;
+    padding: 34px 16px;
+
+}
+
+.container_FormsChange {
+    width: auto;
+    height: auto;
+    border: 1px solid #D9D9D9;
+    border-radius: 16px;
+    padding: 24px 35px;
+    margin: 10% auto;
+    background-color: #FFFFFF;
+}
+
+.titulo h1 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container__input__dados__pessoais h2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.container__input__dados__pessoais h3 {
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.container__input {
+    display: flex;
+    gap: 16px;
+}
+
+.container__input input{
+    width: 426.5px;
+}
+
+.container__grupo h2 {
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.container__grupo {
+    border: 1px solid;
+}
+
+.container__button {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    padding: 16px 0;
+}
