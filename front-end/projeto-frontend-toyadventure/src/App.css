@@ -1,7 +1,16 @@
 .App {
-  display: flex;
+ /*  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: aquamarine;
+  background-color: #2B2D42;
+  width: 100vw; */
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #2B2D42;
 }
 
