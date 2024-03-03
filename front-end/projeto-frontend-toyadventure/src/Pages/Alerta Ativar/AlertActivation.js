@@ -1,4 +1,5 @@
 import './AlertActivation.css';
+import Alert from '../../Components/Alert/Alert.js';
 
 export default function AlertActivation({ }) {
     return (
