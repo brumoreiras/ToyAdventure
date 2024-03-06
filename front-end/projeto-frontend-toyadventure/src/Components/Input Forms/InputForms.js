@@ -10,7 +10,7 @@ const InputForms = ({ placeholderInput, type, value, onChange }) => {
   return (
     <div className="login-container">
       <div className={`input-wrapper ${value ? 'focused ' : ''}`}>
-        <label htmlFor="usernameInput">{placeholderInput}</label>
+        <label className='label__input' htmlFor="usernameInput">{placeholderInput}</label>
         <input
           id="usernameInput"
           type={type}

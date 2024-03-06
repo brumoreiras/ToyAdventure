@@ -7,7 +7,7 @@
     margin-bottom: 15px;
   }
   
-  label {
+  .label__input {
     position: absolute;
     top: 50%;
     left: 10px;

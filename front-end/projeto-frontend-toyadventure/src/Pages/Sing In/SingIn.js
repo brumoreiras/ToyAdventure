@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
+
 import './SingIn.css'
 import Menu from '../../Components/Menu/Menu'
 import InputForms from '../../Components/Input Forms/InputForms.js'
@@ -9,6 +11,7 @@ import SuccessRegister from '../Alerta Sucesso/Cadastro/SuccessRegister.js';
 
 
 export default function SingIn({ }) {
+
     // essa tela é de cadastro devo reestruturar e escrever outros nomes
     const nav = useNavigate()
     const [formData, setFormData] = useState({
@@ -30,8 +33,6 @@ export default function SingIn({ }) {
         event.preventDefault()
         setIsModalOpen(true)
 
-        console.log('dados cadastrados::: ', formData)
-        console.log('dados cadastrados::: ', handleInputChange)
     }
 
 
