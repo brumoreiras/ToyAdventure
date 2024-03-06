@@ -2,6 +2,11 @@
 
 # dependencies
 node_modules
+<<<<<<< HEAD
+=======
+./node_modules
+/node_modules
+>>>>>>> main
 /.pnp
 .pnp.js
 
