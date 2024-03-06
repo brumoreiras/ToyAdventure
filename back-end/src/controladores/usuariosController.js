@@ -68,17 +68,16 @@ module.exports = {
 
     async listarUsuarios(req, res) { // foi implementado do zero 
         try {
-            const { nome } = req.query;
-            let query = 'SELECT nome, email, ativo, grupo FROM usuarios';
+            let query = 'SELECT nome, email, grupo, ativo FROM usuarios';
     
-            if (nome) {
-                query += ` WHERE nome LIKE '%${nome}%'`;
-            }
+            console.log('Query executada:', query); // Log da query executada
     
             const usuarios = await pool.query(query);
+            console.log('Número de usuários encontrados:', usuarios.rows.length); // Log do número de usuários encontrados
             return res.status(200).json(usuarios.rows);
     
         } catch (error) {
+            console.error('Erro ao listar usuários:', error); // Log de erros
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         }
     },
