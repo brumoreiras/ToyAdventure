@@ -1,0 +1,39 @@
+/* body {
+    margin: 0;
+    background-color: #2B2D42; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  } */
+  
+  .painel-controle-container {
+    width: 1124px;
+    height: 324px;
+    padding: 16px;
+    background-color: white; 
+    position: relative;
+    border-radius: 22px; 
+    overflow: hidden; 
+    margin: 8%;
+  }
+  
+  .painel-titulo {
+    color: black; 
+    text-align: left; 
+    font-size: 32px;
+    font-weight: 600; 
+    padding: 20px;
+  }
+  
+  .botoes-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    gap: 90px;
+  }
+  
+  .botao {
+    padding: 10px 20px;
+    font-size: 16px;
+  }

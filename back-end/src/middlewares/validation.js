@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 module.exports = {
     validaCampoCadastro(req, res, next) {
         const { nome, cpf, email, senha, grupo } = req.body;

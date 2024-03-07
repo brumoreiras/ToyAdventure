@@ -40,31 +40,40 @@ module.exports = {
         }
     },
 
-    async atualizarUsuario(req, res) { //foi alterado o codigo anterior 
+    async atualizarUsuario(req, res) {
         const { id } = req.usuario;
         const { nome, cpf, senha, grupo } = req.body;
     
         try {
+            console.log('Dados recebidos na requisição:', req.body); // Log dos dados recebidos na requisição
+    
             if (grupo && grupo !== req.usuario.grupo) {
+                console.log('Permissão negada: grupo de usuário diferente do grupo atual.'); // Log da negação de permissão
                 return res.status(403).json({ mensagem: 'Você não tem permissão para alterar o grupo do usuário' });
             }
     
-            let crypSenha = req.usuario.senha; // Mantém a senha antiga se não for alterada
+            let crypSenha = req.usuario.senha;
+            
             if (senha) {
-                crypSenha = await bcrypt.hash(senha, 10); // Criptografa a nova senha se fornecida
+                crypSenha = await bcrypt.hash(senha, 10);
             }
+    
+            console.log('Dados atualizados:', { nome, cpf, senha: crypSenha }); // Log dos dados a serem atualizados no banco de dados
     
             await pool.query(
                 'UPDATE usuarios SET nome = $1, cpf = $2, senha = $3 WHERE id = $4',
                 [nome, cpf, crypSenha, id]
             );
     
+            console.log('Usuário atualizado com sucesso.'); // Log de sucesso na atualização do usuário
             return res.status(200).end();
     
         } catch (error) {
+            console.error('Ocorreu um erro durante a atualização do usuário:', error); // Log de erro interno do servidor
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         }
     },
+    
 
     async listarUsuarios(req, res) { // foi implementado do zero 
         try {

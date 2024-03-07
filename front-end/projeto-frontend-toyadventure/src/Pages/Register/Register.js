@@ -3,16 +3,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-import './SingIn.css'
-import Menu from '../../Components/Menu/Menu'
+import './Register.css'
+import Menu from '../../Components/Menu/Menu.js'
 import InputForms from '../../Components/Input Forms/InputForms.js'
 import Button from '../../Components/Button/Button.js';
 import SuccessRegister from '../Alerta Sucesso/Cadastro/SuccessRegister.js';
 
 
-export default function SingIn({ }) {
 
-    // essa tela é de cadastro devo reestruturar e escrever outros nomes
+export default function Register({ }) {
+    const navigate = useNavigate()
+
     const nav = useNavigate()
     const [formData, setFormData] = useState({
         nome: '',
@@ -29,11 +30,31 @@ export default function SingIn({ }) {
             [name]: value
         });
     };
-    const handleSubmit = (event) => {
+    console.log('Dados coletados::: ', formData)
+    async function handleSubmit(event) {
         event.preventDefault()
         setIsModalOpen(true)
 
+        event.preventDefault()
+
+        try {
+            const response = await fetch('http://localhost:3033/usuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ formData })
+            })
+
+
+            console.log(response)
+        } catch {
+            console.log('Ocorreu um erro : ')
+        }
+
     }
+
+
 
 
     return (

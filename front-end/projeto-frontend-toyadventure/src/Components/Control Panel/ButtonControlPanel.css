@@ -1,0 +1,15 @@
+.listar-produtos-btn {
+    width: 180px;
+    height: 135px;
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 16px;
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
