@@ -54,14 +54,16 @@
                         <div class="login-container">
                             <div class="input-wrapper">
                                 <label class="label__input">Nome completo</label>
-                                <input class="input__forms" type="text" value="" placeholder="Nome completo">
+                                <input class="input__forms" type="text" value="" placeholder="Nome completo"
+                                    data-tipo="nome" required>
                                 <span class="mensagem-erro"></span>
                             </div>
                         </div>
                         <div class="login-container">
                             <div class="input-wrapper">
                                 <label class="label__input">CPF</label>
-                                <input class="input__forms" type="text" value="" placeholder="CPF">
+                                <input class="input__forms" type="text" value="" placeholder="CPF" data-tipo="cpf"
+                                    required>
                                 <span class="mensagem-erro"></span>
                             </div>
                         </div>
@@ -72,28 +74,63 @@
                     <span>Permissões do sistema / Grupo</span>
                     <div class="container__radios">
                         <div class="container__input__radio">
-                            <input class="" type="radio" value="">
+                            <input class="" type="radio" value="Administrador" data-tipo="admin" required
+                                name="permissao">
                             <label class="">Administrador</label>
+                            <span class="mensagem-erro"></span>
                         </div>
                         <div class="container__input__radio">
-                            <input class="" type="radio" value="">
+                            <input class="" type="radio" value="Estoquista" data-tipo="estoquista" required
+                                name="permissao">
                             <label class="">Estoquista</label>
+                            <span class="mensagem-erro"></span>
                         </div>
                     </div>
                 </div>
 
+                <div class="titulo">
+                    <span>E-mail</span>
+                </div>
                 <div class="container__senha">
+
+                    <div class="login-container">
+                        <div class="input-wrapper">
+                            <label class="label__input">E-mail</label>
+                            <input class="input__forms" type="email" value="" placeholder="E-mail" data-tipo="email"
+                                required>
+                            <span class="mensagem-erro"></span>
+                        </div>
+                    </div>
+                    <div class="login-container">
+                        <div class="input-wrapper">
+                            <label class="label__input">Confirme sua e-mail</label>
+                            <input class="input__forms" data-tipo="confirmeEmail" type="email" value=""
+                                placeholder="Confirme sua e-mail" data-tipo="confirmeEmail" required>
+                            <span class="mensagem-erro"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="titulo">
+                    <span>Senha</span>
+                </div>
+
+                <div class="container__senha">
+
                     <div class="login-container">
                         <div class="input-wrapper">
                             <label class="label__input">Senha</label>
-                            <input class="input__forms" type="text" value="" placeholder="Senha">
+                            <input class="input__forms" type="password" alue="" placeholder="Senha" data-tipo="password"
+                                required>
                             <span class="mensagem-erro"></span>
                         </div>
                     </div>
                     <div class="login-container">
                         <div class="input-wrapper">
                             <label class="label__input">Confirme sua senha</label>
-                            <input class="input__forms" type="text" value="" placeholder="Confirme sua senha">
+                            <input class="input__forms" data-tipo="confirmePassword" type="password" value=""
+                                placeholder="Confirme sua senha" data-tipo="confirmePassword" required>
                             <span class="mensagem-erro"></span>
                         </div>
                     </div>
@@ -101,21 +138,14 @@
                 </div>
                 <div class="container__btn">
                     <button class="btn__ativar" href="alterar-dados.html">Salvar</button>
-                    <button class="btn__desativar" href="alterar-dados.html">Cancelar</button>
+                    <button class="btn__desativar" href="../Pages/listar-usuario.html">Cancelar</button>
                 </div>
 
             </form>
-
-
         </div>
-
-
     </section>
-
-
-
-
-
+    <script type="module" src="../JScript/coletarDados.js"></script>
+    <script type="module" src="../JScript/inputValidation.js"></script>
 </body>
 
 </html>
