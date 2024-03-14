@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-/*   justify-content: center; */
+  /*   justify-content: center; */
   background-color: #2B2D42;
-/*   height: 100vh; */
-
+  height: 100vh;
+  font-family: "Roboto";
 }

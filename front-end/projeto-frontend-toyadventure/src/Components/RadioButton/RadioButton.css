@@ -1,0 +1,8 @@
+.container__radio label{
+    color: #545A69;
+    font-weight: 500;
+    font-size: 12px;
+    /* padding: 8px; */
+    display: flex;
+    align-items: center;
+}

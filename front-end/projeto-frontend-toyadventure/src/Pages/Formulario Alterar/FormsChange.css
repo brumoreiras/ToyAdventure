@@ -10,7 +10,7 @@
 }
 
 .container_FormsChange {
-    width: 487px;
+    width: 450px;
     height: auto;
     border: 1px solid #D9D9D9;
     border-radius: 16px;
@@ -28,6 +28,10 @@
     font-weight: bold;
 }
 
+.container__input__dados__pessoais {
+    width: 100%;
+}
+
 .container__input__dados__pessoais h2 {
     font-size: 16px;
     font-weight: bold;
@@ -40,7 +44,7 @@
 
 .container__input {
     display: flex;
-    gap: 8px;
+    gap: 32px;
 }
 
 .container__grupo h2 {
@@ -48,13 +52,14 @@
     font-weight: lighter;
 }
 
-.container__grupo {
-    border: 1px solid;
-}
-
 .container__button {
     display: flex;
     gap: 16px;
     justify-content: flex-end;
     padding: 16px 0;
+}
+
+.container__radio__button {
+    display: flex;
+    gap: 16px;
 }

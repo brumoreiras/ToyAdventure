@@ -1,28 +1,27 @@
-import ListaProdutos from '../../Components/Control Panel/ButtonControlPanel'
+import ListaProdutos from '../../Components/Control Panel/ButtonControlPanel.js'
 import './ControlPanel.css'
-import { useNavigate } from 'react-router-dom'
 
 export default function ControlPanel() {
-    const navigate = useNavigate();
     return (
+        <div className='container__body'>
         <div className="painel-controle-container">
             <div className="painel-titulo">Painel de Controle</div>
             <div className="botoes-container">
-                {/* <button className="botao">Botão 1</button>
-        <button className="botao">Botão 2</button>
-        <button className="botao">Botão 3</button> */}
                 <ListaProdutos
+                    router='/lista-produtos'
                     titulo='Listar Produto'
                 />
                 <ListaProdutos
+                    router='/lista-de-usuario'
                     titulo='Listar Usuário'
-                    onClick={() => navigate('/lista-de-usuario')}
 
                 />
                 <ListaProdutos
+                    router='/lista-pedidos'
                     titulo='Listar Pedidos'
                 />
             </div>
+        </div>
         </div>
     )
 }

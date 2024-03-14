@@ -6,7 +6,10 @@ const routes = require('./rotas');
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000',  // Substitua pelo seu frontend
+    credentials: true,
+  }));
 app.use(routes);
 
 const PORT = process.env.PORT || 3033;

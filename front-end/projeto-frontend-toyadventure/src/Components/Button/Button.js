@@ -11,7 +11,8 @@ const buttonStyles = {
     success: 'btn-success',
     dangerYes: 'btn-danger-yes',
     dangerNo: 'btn-danger-no',
-    add: 'btn-add'
+    add: 'btn-add',
+    alter: 'alter'
 
 };
 

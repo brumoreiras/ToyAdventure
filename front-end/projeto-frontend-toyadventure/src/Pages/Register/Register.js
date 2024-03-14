@@ -1,61 +1,81 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import './Register.css'
 import Menu from '../../Components/Menu/Menu.js'
 import InputForms from '../../Components/Input Forms/InputForms.js'
-import Button from '../../Components/Button/Button.js';
-import SuccessRegister from '../Alerta Sucesso/Cadastro/SuccessRegister.js';
+import Button from '../../Components/Button/Button.js'
+import SuccessRegister from '../Alerta Sucesso/Cadastro/SuccessRegister.js'
+import RadioButton from '../../Components/RadioButton/RadioButton.js'
+import axios from 'axios'
 
-
-
-export default function Register({ }) {
-    const navigate = useNavigate()
-
-    const nav = useNavigate()
+export default function Register() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
         grupo: '',
         email: '',
         senha: ''
-    })
+    });
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [adminChecked, setAdminChecked] = useState(false);
+    const [estoquistaChecked, setEstoquistaChecked] = useState(false);
 
     const handleInputChange = (name, value) => {
-        setFormData({
-            ...formData,
+        setFormData(prevState => ({
+            ...prevState,
             [name]: value
-        });
+        }));
     };
-    console.log('Dados coletados::: ', formData)
-    async function handleSubmit(event) {
-        event.preventDefault()
-        setIsModalOpen(true)
 
-        event.preventDefault()
+    const handleAdminChange = () => {
+        setAdminChecked(true);
+        setEstoquistaChecked(false);
+        setFormData(prevState => ({
+            ...prevState,
+            grupo: 'administrador'
+        }));
+    };
 
+    const handleEstoquistaChange = () => {
+        setAdminChecked(false);
+        setEstoquistaChecked(true);
+        setFormData(prevState => ({
+            ...prevState,
+            grupo: 'estoquista'
+        }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setIsModalOpen(true);
+        console.log("formData::: ", formData);
         try {
-            const response = await fetch('http://localhost:3033/usuario', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ formData })
-            })
+            const dados = {
+                nome: formData.nome,
+                cpf: formData.cpf,
+                grupo: formData.grupo === 'administrador' ? 'admin' : 'estoquista',
+                email: formData.email,
+                senha: formData.senha
+            };
 
+            console.log(dados);
+            console.log(dados.grupo);
 
-            console.log(response)
-        } catch {
-            console.log('Ocorreu um erro : ')
+            const response = await axios.post('http://localhost:3033/usuario', dados);
+
+            console.log('Resposta da requisição:', response.data);
+
+            if (response.status === 200) {
+                console.log('Usuário cadastrado com sucesso:', response.data);
+            } else {
+                console.error('Erro ao cadastrar usuário:', response.data);
+            }
+        } catch (error) {
+            console.error('Ocorreu um erro:', error);
         }
-
-    }
-
-
-
+    };
 
     return (
         <div className='container__page'>
@@ -66,7 +86,7 @@ export default function Register({ }) {
                         <h1>Cadastrar usuário no sistema</h1>
                     </div>
 
-                    <div className='container__input__dados__pessoais'>
+                    <div className='container__dados'>
                         <h2>Dados cadastrais</h2>
                         <h3>Dados pessoais</h3>
                         <div className='container__input'>
@@ -89,23 +109,23 @@ export default function Register({ }) {
                     <div className='container__grupo'>
                         <h2>Permissões do sistema / Grupo</h2>
                         <div className='container__radio__button container__input'>
-                            <InputForms
-                                placeholderInput='Administrador'
-                                type='radio'
-                                name='grupo'
+                            <RadioButton
+                                name='admin'
                                 value='administrador'
-                                onChange={(value) => handleInputChange('grupo', value)}
+                                nameValue='Administrador'
+                                checked={adminChecked}
+                                onChange={handleAdminChange}
                             />
-                            <InputForms
-                                placeholderInput='Estoquista'
-                                type='radio'
-                                name='grupo'
+                            <RadioButton
+                                name='estoquista'
                                 value='estoquista'
-                                onChange={(value) => handleInputChange('grupo', value)}
+                                nameValue='Estoquista'
+                                checked={estoquistaChecked}
+                                onChange={handleEstoquistaChange}
                             />
                         </div>
                     </div>
-                    <div className='container__input__dados__pessoais'>
+                    <div className='container__dados'>
                         <h3>E-mail</h3>
                         <div className='container__input'>
                             <InputForms
@@ -124,7 +144,7 @@ export default function Register({ }) {
                             />
                         </div>
                     </div>
-                    <div className='container__input__dados__pessoais'>
+                    <div className='container__dados'>
                         <h3>Senha</h3>
                         <div className='container__input'>
                             <InputForms
@@ -152,7 +172,7 @@ export default function Register({ }) {
                         <Button
                             styleType='dangerNo'
                             children='Cancelar'
-                            onClick={() => nav('/lista-de-usuario')}
+                            onClick={() => navigate('/lista-de-usuario')}
                         />
                     </div>
                 </form>

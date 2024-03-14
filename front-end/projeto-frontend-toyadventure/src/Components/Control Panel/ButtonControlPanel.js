@@ -2,17 +2,17 @@ import React from "react";
 import "./ButtonControlPanel.css";
 import { Link } from "react-router-dom";
 
-const ListaProdutos = ({ titulo }) => {
+const ListaProdutos = ({ titulo, router }) => {
     /*  const handleListarProdutos = () => {
          console.log("Produtos listados!");
      }; */
 
     return (
-        <div className="listar-produtos-btn">
-            < Link to="/lista-de-produtos" >
+        < Link to={router} >
+            <div className="listar-produtos-btn">
                 {titulo}
-            </Link >
-        </div >
+            </div >
+        </Link >
     );
 };
 

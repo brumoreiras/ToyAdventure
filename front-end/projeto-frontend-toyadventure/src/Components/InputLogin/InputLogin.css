@@ -18,7 +18,8 @@ label {
     border: none;
     font-size: 12px;
     font-weight: 400;
-    /* box-sizing: border-box; */
+    padding: 8px;
+    box-sizing: border-box;
     border-radius: 4px;
     border: 1px solid #DEDEDE;
     margin-bottom: 16px;

@@ -1,39 +1,26 @@
-/* body {
-    margin: 0;
-    background-color: #2B2D42; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  } */
-  
-  .painel-controle-container {
-    width: 1124px;
-    height: 324px;
-    padding: 16px;
-    background-color: white; 
-    position: relative;
-    border-radius: 22px; 
-    overflow: hidden; 
-    margin: 8%;
-  }
-  
-  .painel-titulo {
-    color: black; 
-    text-align: left; 
-    font-size: 32px;
-    font-weight: 600; 
-    padding: 20px;
-  }
-  
-  .botoes-container {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    gap: 90px;
-  }
-  
-  .botao {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
+ .container__body {
+   box-sizing: border-box;
+   height: auto;
+ }
+
+ .painel-controle-container {
+   padding: 3rem 4rem;
+   background-color: white;
+   border-radius: 22px;
+   margin: 3% auto;
+ }
+
+ .painel-titulo {
+   color: black;
+   font-size: 32px;
+   font-weight: 600;
+   margin-bottom: 27px;
+ }
+
+ .botoes-container {
+   padding: 16px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 90px;
+ }
