@@ -9,7 +9,7 @@ async function aoSalvar(evento) {
     const { nome, email, grupo, senha } = coletarDados();
 
     try {
-        const response = await fetch("http://localhost:3033/usuarios", {
+        const response = await fetch("http://localhost:3033/usuario", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
