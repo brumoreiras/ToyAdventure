@@ -1,0 +1,39 @@
+.container__forms{
+    padding: 22px 16px;
+}
+.container__forms h1{
+ margin: 16px 0;
+}
+.container__forms h2{
+ margin: 16px 0;
+}
+.container__input__dados{
+    display: flex;
+}
+#confirmacao-entrada-cadastro-pf {
+   display: flex;
+   flex-wrap: wrap;
+
+}
+
+#confirmacao-entrada input {
+   margin: 0.3rem 0;
+   padding: 0.5rem 1rem;
+
+}
+
+.mensagem-erro {
+   display: block;
+   color: red;
+   font-family: 'Inter', sans-serif;
+   font-size: 0.8rem;
+   font-weight: bold 100;
+   margin-top: 0.5rem;
+   padding-left: 0.5rem;
+   margin-bottom: 0.5rem;
+}
+
+.erro input {
+   border: 0.1rem solid red;
+
+}

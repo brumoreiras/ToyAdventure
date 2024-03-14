@@ -1,0 +1,105 @@
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(217, 217, 217, 0.5);
+    backdrop-filter: blur(1px);
+    z-index: 9998;
+}
+
+.container__modal {
+    width: 450px;
+    height: auto;
+    border: 1px solid #D9D9D9;
+    border-radius: 16px;
+    padding: 24px 35px;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.container__modal h1 {
+    font-size: 22px;
+    font-weight: 500;
+
+    margin-bottom: 16px;
+}
+
+.container__modal h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.titulo {
+    font-size: 12px;
+    font-weight: 300;
+
+}
+
+.container__grupo span {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.container__radios {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    color: #545A69;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.container__senha {
+    display: flex;
+}
+
+.container__btn {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding: 4px;
+}
+
+/*
+input styles
+*/
+
+.login-container {
+    padding: 16px 0;
+    width: 100%;
+}
+
+.label__input {
+    display: none;
+    /* Inicialmente invisível */
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: font-size 0.3s;
+    font-size: 12px;
+    color: #555;
+}
+
+.input-wrapper.focused label {
+    display: block;
+    /* Torna visível quando o input está em foco */
+    font-size: 8px;
+}
+
+.input__forms {
+    width: 90%;
+    padding: 8px 4px;
+    border: none;
+    border-bottom: 1px solid #D9D9D9;
+    outline: none;
+}
+
+.usarnameInput {
+    font-size: 12px;
+}

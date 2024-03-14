@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-painel-controle.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-listar-usuario.css" />
+    <title>ToyAdventure - Lista de usuário</title>
+</head>
+
+<body>
+    <header class="header"> <!-- Implementar logica para quando estiver logado aparecer o nome do usuario -->
+        <img src="../Images/icones/Logo.png" alt="Logo ToyAdventure">
+        <div class="container__profile">
+            <a href="#">
+                <p>Nome de usuário</p>
+                <img src="../Images/icones/account_circle.png" alt="Circle account">
+            </a>
+        </div>
+    </header>
+    <section class="container__principal">
+        <div class="container__menu">
+            <h1>Menu</h1>
+            <nav class="menu__bar">
+                <a class="container__options__home" href="painel-de-controle.html"><img src="../Images/icones/home.svg"
+                        alt="Ícone home" />Home</a>
+                <a class="container__options__produto" href="listar-produtos"> <img src="../Images/icones/box.svg"
+                        alt="Ícone Produtos" />Produtos</a>
+                <a class="container__options__user" href="listar-usuario.html"><img
+                        src="../Images/icones/profile-person.svg" alt="Ícone Usuário" />Usuário</a>
+                <a class="container__options__pedido" href="listar-pedidos"><img src="../Images/icones/bag.svg"
+                        alt="Ícone Pedidos" />Pedidos</a>
+
+            </nav>
+        </div>
+
+        <div class="container__list">
+            <div class="container__list__header">
+                <h1>Consultar Usuário</h1>
+                <input type="text" placeholder="Pesquisar usuário" />
+                <a class="button__hedar__list" href="cadastrar-usuario.html"><img
+                        src="../Images/icones/Group 1.svg">Adicionar</a>
+            </div>
+            <div class="container__table">
+                <h2>Lista de Usuário </h2>
+                <table>
+                    <thead class="table__header">
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Grupo</th>
+                            <th>Status</th>
+                            <th>Alterar</th>
+                            <th>Alterar Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aqui eu preciso implementar uma logica para quando for clicado em ativar habilitar o css para cada cor e alterar a propriedade no banco de dados
+                        <a class="btn__alterar" href="alterar-dados.html">Alterar</a>
+                        <button class="btn__ativar" href="alterar-dados.html">Ativar</button>
+                        <button class="btn__desativar" href="alterar-dados.html">Desativar</button>
+                         -->
+                        <tr>
+                            <td>Bruno Moreira Santos</td>
+                            <td>brunomoreira.ms@gmai.com</td>
+                            <td>Administrador</td>
+                            <td>Ativo</td>
+
+                            <td className="button-cell">
+                                <a class="btn__alterar" href="alterar-dados.html">Alterar</a>
+                            </td>
+                            <td className="button-cell">
+                                <button class="btn__desativar" href="alterar-dados.html">Desativar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </section>
+
+
+</body>
+
+</html>

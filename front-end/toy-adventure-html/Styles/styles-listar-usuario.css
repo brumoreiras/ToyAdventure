@@ -1,0 +1,133 @@
+.container__menu {
+    width: 10%;
+    height: 520px;
+    padding: 16px;
+    background-color: #EDF5FC;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+}
+
+.container__menu h1 {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 16px;
+}
+
+.container__principal {
+    margin-top: 0;
+}
+
+.menu__bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu__bar a {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: 12px;
+    font-weight: 400;
+    color: #000;
+    padding: 16px;
+    border-bottom: 2px solid #D5D5D5;
+    text-decoration: none;
+}
+
+.container__list {
+    width: 50%;
+    background-color: #fff;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+}
+
+.container__list__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 16px;
+}
+
+.container__list__header input {
+    width: 50%;
+    border-radius: 4px;
+    border: 1px solid #D9D9D9;
+}
+
+.container__list__header input::placeholder {
+    font-size: 12px;
+    font-weight: 300;
+    padding: 8px;
+}
+
+.container__list__header a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    background-color: #ADD4D3;
+    padding: 8px 10px;
+    border-radius: 4px;
+}
+
+.container__table h2 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+
+.container__table {
+    color: #545A69;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 16px;
+}
+
+.container__table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container__table th,
+.container__table td {
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.container__table td {
+    font-weight: 400;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.btn__alterar {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+    padding: 4px 8px;
+    background-color: #B8C5D6;
+    text-decoration: none;
+    border-radius: 4px;
+
+}
+.btn__ativar {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+    padding: 4px 8px;
+    background-color: #23CE6B;
+    border-radius: 4px;
+
+}
+.btn__desativar {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+    padding: 4px 8px;
+    background-color: #EF233C;
+    border-radius: 4px;
+
+}
