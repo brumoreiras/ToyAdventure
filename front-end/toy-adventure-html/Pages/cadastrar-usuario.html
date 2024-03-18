@@ -74,13 +74,13 @@
                     <span>Permissões do sistema / Grupo</span>
                     <div class="container__radios">
                         <div class="container__input__radio">
-                            <input class="" type="radio" value="Administrador" data-tipo="admin" required
+                            <input class="" type="radio" value="admin" data-tipo="admin" required
                                 name="permissao">
                             <label class="">Administrador</label>
                             <span class="mensagem-erro"></span>
                         </div>
                         <div class="container__input__radio">
-                            <input class="" type="radio" value="Estoquista" data-tipo="estoquista" required
+                            <input class="" type="radio" value="estoquista" data-tipo="estoquista" required
                                 name="permissao">
                             <label class="">Estoquista</label>
                             <span class="mensagem-erro"></span>
@@ -121,7 +121,7 @@
                     <div class="login-container">
                         <div class="input-wrapper">
                             <label class="label__input">Senha</label>
-                            <input class="input__forms" type="password" alue="" placeholder="Senha" data-tipo="password"
+                            <input class="input__forms" type="password" value="" placeholder="Senha" data-tipo="senha"
                                 required>
                             <span class="mensagem-erro"></span>
                         </div>
@@ -134,20 +134,20 @@
                             <span class="mensagem-erro"></span>
                         </div>
                     </div>
-
                 </div>
-                
+                <div class="container__btn">
+                    <button class="btn__ativar" type="submit" href="alterar-dados.html">Salvar</button>
+                    <button class="btn__desativar" href="../Pages/listar-usuario.html">Cancelar</button>
+                </div>
             </form>
-            <div class="container__btn">
-                <button class="btn__ativar" href="alterar-dados.html">Salvar</button>
-                <button class="btn__desativar" href="../Pages/listar-usuario.html">Cancelar</button>
-            </div>
+
         </div>
     </section>
     <script type="module" src="../JScript/coletarDados.js"></script>
     <script type="module" src="../JScript/inputValidation.js"></script>
     <script type="module" src="../JScript/Requests/cadastrarUsuario.js"></script>
     
+
 </body>
 
 </html>

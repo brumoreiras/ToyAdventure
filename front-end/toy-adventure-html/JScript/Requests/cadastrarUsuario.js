@@ -1,12 +1,11 @@
-import { coletarDados } from "../coletarDados";
-
 function navigate(route) {
     window.location.href = route;
 }
 
-async function aoSalvar(evento) {
-    evento.preventDefault();
-    const { nome, email, grupo, senha } = coletarDados();
+export async function aoSalvar(dados) {
+    console.log('O que está sendo recebido:::> ', dados)
+    const { nome, cpf, email, grupo, senha } = dados;
+    console.table(dados)
 
     try {
         const response = await fetch("http://localhost:3033/usuario", {
@@ -15,24 +14,24 @@ async function aoSalvar(evento) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                nome, email, senha, grupo
+                nome, cpf, email, grupo, senha,
             })
-        });
+        })
 
         if (response.ok) {
-            navigate("/lista-usuario");
+            navigate("/ToyAdventure/front-end/toy-adventure-html/Pages/listar-usuario.html");
+            console.table('Retorno dos dados', dados)
         } else {
             console.log("Erro ao cadastrar usuário:", response.statusText);
         }
 
         const data = await response.json();
-        console.log(data);
+        console.log('resposta::: ',  await response.json());
     } catch (error) {
         console.error('Ocorreu um erro ao cadastrar usuário:', error);
     }
 }
 
-const formulario = document.querySelector('form');
-if (formulario) {
-    formulario.addEventListener('submit', aoSalvar);
-}
+
+
+//Eu preciso coletar os dados enviar para api cadastrar no banco não preciso fazer o direcionamento de paginas por aqui

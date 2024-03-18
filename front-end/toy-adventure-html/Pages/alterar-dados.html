@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../Styles/styles-painel-controle.css" />
     <link rel="stylesheet" type="text/css" href="../Styles/styles-listar-usuario.css" />
     <link rel="stylesheet" type="text/css" href="../Styles/styles-alterar-dados.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-cadastrar-usuario.css" />
     <title>ToyAdventure - Alterar dados do usuário</title>
 </head>
 
@@ -14,70 +15,77 @@
 
     <section class="blur-background">
         <div class="container__modal">
+            <form id="formulario" data-id="">
+                <h1>Alterar dados cadastrais</h1>
 
-            <h1>Alterar dados cadastrais</h1>
+                <h2>Dados cadastrados</h2>
 
-            <h2>Dados cadastrados</h2>
-
-            <div class="container__dados__pessoais">
-                <div class="titulo">
-                    <span>Dados pessoais</span>
-                </div>
-
-                <div class="login-container">
-                    <div class="input-wrapper">
-                        <label class="label__input">Nome completo</label>
-                        <input class="input__forms" type="text" value="" placeholder="Nome completo">
-                        <span class="mensagem-erro"></span>
+                <div class="container__dados__pessoais">
+                    <div class="titulo">
+                        <span>Dados pessoais</span>
                     </div>
-                </div>
 
-                <div class="container__grupo">
-                    <span>Permissões do sistema / Grupo</span>
-                    <div class="container__radios">
-                        <div class="container__input__radio">
-                            <input class="" type="radio" value="">
-                            <label class="">Administrador</label>
-                        </div>
-                        <div class="container__input__radio">
-                            <input class="" type="radio" value="">
-                            <label class="">Estoquista</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="titulo">
-                    <span>Senha</span>
-                </div>
-                <div class="container__senha">
                     <div class="login-container">
                         <div class="input-wrapper">
-                            <label class="label__input">Senha</label>
-                            <input class="input__forms" type="text" value="" placeholder="Senha">
-                            <span class="mensagem-erro"></span>
-                        </div>
-                    </div>
-                    <div class="login-container">
-                        <div class="input-wrapper">
-                            <label class="label__input">Confirme sua senha</label>
-                            <input class="input__forms" type="text" value="" placeholder="Confirme sua senha">
+                            <label class="label__input">Nome completo</label>
+                            <input class="input__forms" id="nome" type="text" value="" placeholder="Nome completo"
+                                data-tipo="nome" required>
                             <span class="mensagem-erro"></span>
                         </div>
                     </div>
 
-                </div>
-                <div class="container__btn">
-                    <button class="btn__ativar" href="alterar-dados.html">Salvar</button>
-                    <button class="btn__desativar" href="alterar-dados.html">Cancelar</button>
-                </div>
+                    <div class="container__grupo">
+                        <span>Permissões do sistema / Grupo</span>
+                        <div class="container__radios">
+                            <div class="container__input__radio">
+                                <input class="" type="radio" value="admin" data-tipo="admin" required name="permissao">
+                                <label class="">Administrador</label>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                            <div class="container__input__radio">
+                                <input class="" type="radio" value="estoquista" data-tipo="estoquista" required
+                                    name="permissao">
+                                <label class="">Estoquista</label>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="titulo">
+                        <span>Senha</span>
+                    </div>
+                    <div class="container__senha">
+                        <div class="login-container">
+                            <div class="input-wrapper">
+                                <label class="label__input">Senha</label>
+                                <input class="input__forms" id="senha" type="password" value="" placeholder="Senha"
+                                    data-tipo="senha" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+                        <div class="login-container">
+                            <div class="input-wrapper">
+                                <label class="label__input">Confirme sua senha</label>
+                                <input class="input__forms" data-tipo="confirmePassword" type="password" value=""
+                                    placeholder="Confirme sua senha" data-tipo="confirmePassword" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="container__btn">
+                        <button type="submit" class="btn__ativar" href="alterar-dados.html">Salvar</button>
+                        <button class="btn__desativar" href="alterar-dados.html">Cancelar</button>
+                    </div>
 
 
-            </div>
+                </div>
+            </form>
         </div>
 
     </section>
-
-
+    <script type="module" src="../JScript/inputValidation.js"></script>
+    <script type="module" src="../JScript/Requests/alterarDadosUsuario.js"></script>
 </body>
 
 </html>

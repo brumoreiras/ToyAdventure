@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../Styles/styles-painel-controle.css" />
     <link rel="stylesheet" type="text/css" href="../Styles/styles-listar-usuario.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-alterar-dados.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-cadastrar-usuario.css" />
     <title>ToyAdventure - Lista de usuário</title>
 </head>
 
@@ -55,14 +57,14 @@
                             <th>Alterar Status</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="create_list">
                         <!-- Aqui eu preciso implementar uma logica para quando for clicado em ativar habilitar o css para cada cor e alterar a propriedade no banco de dados
                         <a class="btn__alterar" href="alterar-dados.html">Alterar</a>
                         <button class="btn__ativar" href="alterar-dados.html">Ativar</button>
                         <button class="btn__desativar" href="alterar-dados.html">Desativar</button>
                          -->
-                        <tr>
-                            <td>Bruno Moreira Santos</td>
+                        <!--               <tr > -->
+                        <!--  <td>Bruno Moreira Santos</td>
                             <td>brunomoreira.ms@gmai.com</td>
                             <td>Administrador</td>
                             <td>Ativo</td>
@@ -72,17 +74,93 @@
                             </td>
                             <td className="button-cell">
                                 <button class="btn__desativar" href="alterar-dados.html">Desativar</button>
-                            </td>
-                        </tr>
+                            </td> -->
+                        <!--               </tr> -->
                     </tbody>
                 </table>
             </div>
         </div>
 
-
     </section>
 
+    <section class="blur-background hide" id="fade">
+        <div class="container__modal hide" id="modal">
+            <form id="formulario" data-id="">
+                <h1>Alterar dados cadastrais</h1>
 
+                <h2>Dados cadastrados</h2>
+
+                <div class="container__dados__pessoais">
+                    <div class="titulo">
+                        <span>Dados pessoais</span>
+                    </div>
+
+                    <div class="login-container">
+                        <div class="input-wrapper">
+                            <label class="label__input">Nome completo</label>
+                            <input class="input__forms" id="nome" type="text" value="" placeholder="Nome completo"
+                                data-tipo="nome" required>
+                            <span class="mensagem-erro"></span>
+                        </div>
+                    </div>
+
+                    <div class="container__grupo">
+                        <span>Permissões do sistema / Grupo</span>
+                        <div class="container__radios">
+                            <div class="container__input__radio">
+                                <input class="" type="radio" value="admin" data-tipo="admin" required name="permissao">
+                                <label class="">Administrador</label>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                            <div class="container__input__radio">
+                                <input class="" type="radio" value="estoquista" data-tipo="estoquista" required
+                                    name="permissao">
+                                <label class="">Estoquista</label>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="titulo">
+                        <span>Senha</span>
+                    </div>
+                    <div class="container__senha">
+                        <div class="login-container">
+                            <div class="input-wrapper">
+                                <label class="label__input">Senha</label>
+                                <input class="input__forms" id="senha" type="password" value="" placeholder="Senha"
+                                    data-tipo="senha" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+                        <div class="login-container">
+                            <div class="input-wrapper">
+                                <label class="label__input">Confirme sua senha</label>
+                                <input class="input__forms" data-tipo="confirmePassword" type="password" value=""
+                                    placeholder="Confirme sua senha" data-tipo="confirmePassword" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="container__btn">
+                        <button type="submit" class="btn__salvar" id="salvar-alteracao" >Salvar</button>
+                        <button class="btn__cancelar" id="close-modal" >Cancelar</button>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+
+    </section>
+    <script type="module" src="../JScript/listarUsuarioDoBanco.js"></script>
+    <script type="module" src="../JScript/Requests/listarUsuario.js"></script>
+
+    <script type="module" src="../JScript/Requests/getUsuario.js"></script>
+    <script type="module" src="../JScript/Requests/alterarDadosUsuario.js"></script>
+    <script type="module" src="../JScript/modal.js"></script>
+    <script type="module" src="../JScript/Requests/alterarStatus.js"></script>
 </body>
 
 </html>

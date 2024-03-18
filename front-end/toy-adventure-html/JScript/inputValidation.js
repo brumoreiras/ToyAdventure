@@ -60,7 +60,7 @@ const mensagemErro = {
         typeMismatch: 'O email digitado não é valido.',
         customError: 'O e-mail digitado não confere.'
     },
-    password: {
+    senha: {
         valueMissing: 'O campo de senha não pode estar vazio.',
         patternMismatch: 'A senha deve conter entre 6 à 8 caracteres, deve conter pelo menos uma letra maiúscula, um número e não deve conter caractere especial.'
     },
@@ -147,12 +147,12 @@ function validaEmail(input) {
 }
 // ------------------- Validação de senha, aqui verifica se os campos são iguais ------------------------------
 function validaSenha(input) {
-    const password = document.querySelector('.input__forms[data-tipo="password"]').value;
+    const senha = document.querySelector('.input__forms[data-tipo="senha"]').value;
     const confirmePassword = input.value
 
     let inf = ''
 
-    if (password == confirmePassword) {
+    if (senha == confirmePassword) {
         inf = ''
         input.setCustomValidity('')
         return
@@ -175,60 +175,4 @@ function mostraMensagemErro(tipoDeInput, input) {
     })
 
     return mensagem
-}
-
-const confEmail = document.getElementById('confirme-email')
-const confSenha = document.getElementById('confirme-password')
-
-function cadastroSucesso(confEmail, confSenha) {
-
-    const dadosLogin = JSON.parse(localStorage.getItem('dadosLogin') || '[]')
-
-    dadosLogin.push({
-        email: confEmail.value,
-        senha: confSenha.value
-    })
-
-    localStorage.setItem('dadosLogin', JSON.stringify(dadosLogin))
-}
-
-// --------------------- Autenticação de login -------------------------------
-
-const inputEmail = document.getElementById('emailL')
-const inputSenha = document.getElementById('senhaA')
-
-const botaoEntrou = document.getElementById('fomrLogin')
-
-if (botaoEntrou) {
-    botaoEntrou.addEventListener('submit', (e) => {
-        e.preventDefault()
-
-        let listLogin = []
-        let objLogin = {
-            emails: '',
-            senhas: ''
-        }
-
-        listLogin = JSON.parse(localStorage.getItem('dadosLogin'))
-
-        listLogin.forEach((item) => {
-            if (inputEmail.value == item.email && inputSenha.value == item.senha) {
-
-                objLogin = {
-                    emails: item.email,
-                    senhas: item.senha
-                }
-            }
-
-        })
-        if (inputEmail.value == objLogin.emails && inputSenha.value == objLogin.senhas) {
-            window.location.replace("/paginas/bemVindo.html")
-            return
-        } else {
-            alert('Acesso negado')
-            return
-        }
-
-    })
-
 }
