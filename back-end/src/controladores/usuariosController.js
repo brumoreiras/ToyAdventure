@@ -5,6 +5,7 @@ module.exports = {
 
     async registrarUsuario(req, res) { // está cadastrando e criptografando a senha
         const { nome, cpf, email, senha, grupo } = req.body;
+        console.log(req.body)
 
         try {
             const usuarioEncontrado = await pool.query(
@@ -26,15 +27,32 @@ module.exports = {
             return res.status(201).json(cadastrarUsuario.rows[0]);
 
         } catch (error) {
+            console.error('Ocorreu um erro ao registrar o usuário:', error);
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         }
     },
 
-    async getUsuario(req, res) {
-        console.log('req usuario ', req.usuario);
-        try {
+    /*     async getUsuario(req, res) {
             console.log('req usuario ', req.usuario);
-            return res.json(req.usuario);
+            try {
+                console.log('req usuario ', req.usuario);
+                return res.json(req.usuario);
+            } catch (error) {
+                console.error("Simulando erro", error)
+                return res.status(500).json({ mensagem: 'Erro interno do servidor' });
+            }
+        }, */
+    async getUsuario(req, res) {
+        const { id } = req.query;
+        console.log('User ID: ', id);
+        try {
+            // Assuming you have a User model with a findById method
+            const result = await pool.query('SELECT * FROM usuarios WHERE id = $1', [id])
+            if (result.rows.length === 0) {
+                return res.status(404).json({ mensagem: 'Usuário não encontrado' });
+            }
+            console.log('Usuario encontrado:', result.rows[0])
+            return res.json(result.rows[0]);
         } catch (error) {
             console.error("Simulando erro", error)
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
@@ -48,18 +66,15 @@ module.exports = {
         try {
             console.log('Dados recebidos na requisição:', req.body); // Log dos dados recebidos na requisição
 
-            if (grupo && grupo !== req.usuario.grupo) {
-                console.log('Permissão negada: grupo de usuário diferente do grupo atual.'); // Log da negação de permissão
-                return res.status(403).json({ mensagem: 'Você não tem permissão para alterar o grupo do usuário' });
-            }
+            /*       if (grupo && grupo !== req.usuario.grupo) {
+                      console.log('Permissão negada: grupo de usuário diferente do grupo atual.'); // Log da negação de permissão
+                      return res.status(403).json({ mensagem: 'Você não tem permissão para alterar o grupo do usuário' });
+                  } */
 
-            let crypSenha = req.usuario.senha;
-
+            let crypSenha = null;
             if (senha) {
                 crypSenha = await bcrypt.hash(senha, 10);
             }
-
-            console.log('Dados atualizados:', { nome, cpf, senha: crypSenha }); // Log dos dados a serem atualizados no banco de dados
 
             await pool.query(
                 'UPDATE usuarios SET nome = $1, grupo = $2, senha = $3 WHERE id = $4',
@@ -70,12 +85,7 @@ module.exports = {
             return res.status(200).end();
 
         } catch (error) {
-            console.error('Dados recebidos na requisição:', req.body);
-            console.error('Permissão negada: grupo de usuário diferente do grupo atual.');
-            console.error('Dados atualizados:', { nome, grupo });
             console.error('Ocorreu um erro durante a atualização do usuário:', error);
-
-            console.error('Ocorreu um erro durante a atualização do usuário:', error); // Log de erro interno do servidor
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         }
     },
@@ -100,9 +110,14 @@ module.exports = {
     async alterarStatusUsuario(req, res) {
         const { id } = req.query; // Use req.query para acessar os parâmetros de query
         let { ativo } = req.body;
+        console.log(req.body)
 
-        // Converta o valor de "ativo" para um booleano
-        ativo = ativo === "true"; // Converte "true" para true e qualquer outra coisa para false
+        if (ativo)
+            ativo = false
+        else
+            ativo = true
+
+        console.log('ativo req  :::: ', ativo)
 
         try {
             const { rowCount } = await pool.query(
