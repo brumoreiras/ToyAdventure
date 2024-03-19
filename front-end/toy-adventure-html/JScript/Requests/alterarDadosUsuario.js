@@ -4,6 +4,7 @@ const formulario = document.getElementById('formulario');
 
 if (formulario) {
     formulario.addEventListener('submit', async (evento) => {
+        
         /* evento.preventDefault(); */ // Evita o comportamento padrão de recarregar a página ao enviar o formulário
 
         console.log('Clicou no botão de salvar :::> ', user);
@@ -49,11 +50,17 @@ async function atualizarUsuario(id, nome, senha, grupo) {
     console.log('ID do usuário:', nome)
     console.log('ID do usuário:', senha)
     console.log('ID do usuário:', grupo)
+
+   
     try {
+        const token = localStorage.getItem('token');
+        console.log('token :::> ', token)
+   
         const response = await fetch(`http://localhost:3033/alterar-usuario?id=${id}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ nome, senha, grupo })
         });

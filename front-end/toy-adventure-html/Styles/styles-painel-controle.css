@@ -36,6 +36,35 @@ body {
     font-size: 22px;
     color: #D9D9D9;
 }
+.show{
+    display: block !important;
+}
+.profile-menu {
+    display: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    padding: 16px;
+    z-index: 100;
+
+}
+.profile-menu p{
+    padding: 4px;
+  
+}
+.profile-menu a{
+    text-decoration: none;
+    font-size: 16px;
+    color: #000;
+    padding: 4px;
+  
+}
 
 .container__principal {
     display: flex;

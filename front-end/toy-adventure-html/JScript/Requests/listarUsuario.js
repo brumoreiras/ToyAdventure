@@ -2,8 +2,18 @@ import { gerarTabelaUsuarios } from "../listarUsuarioDoBanco.js";
 
 export async function carregarUsuarios() {
     try {
+        const token = localStorage.getItem('token');
+        console.log('token :::> ', token)
+
         // Faz a requisição para obter a lista de usuários
-        const response = await fetch("http://localhost:3033/listar-usuario");
+        const response = await fetch("http://localhost:3033/listar-usuario", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'aplication/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
         if (!response.ok) {
             throw new Error('Erro ao carregar usuários');
         }

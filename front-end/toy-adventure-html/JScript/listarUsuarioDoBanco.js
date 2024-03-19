@@ -8,6 +8,9 @@ export function gerarTabelaUsuarios(usuarios) {
     // Percorre cada usuário e cria uma linha na tabela para cada um
     usuarios.forEach(usuario => {
         // Cria uma nova linha na tabela
+        const { grupo } = JSON.parse(localStorage.getItem('usuario'));
+        const isAdmin = grupo === 'admin';
+
         const row = document.createElement('tr');
 
         // Adiciona as células da linha com os dados do usuário
@@ -30,23 +33,21 @@ export function gerarTabelaUsuarios(usuarios) {
 
         // Adiciona a linha à tabela
         tabela.appendChild(row);
+        if (isAdmin) {
+            const openModalButton = row.querySelector(".open-modal");
+            openModalButton.addEventListener("click", () => {
+                document.getElementById('nome').value = usuario.nome;
+                document.getElementById('senha').value = usuario.senha;
+                console.log('usuario :::> ', usuario.id)
 
-        const openModalButton = row.querySelector(".open-modal");
-        openModalButton.addEventListener("click", () => {
-            document.getElementById('nome').value = usuario.nome;
-            document.getElementById('senha').value = usuario.senha;
-            console.log('usuario :::> ', usuario.id)
-
-            const modal = document.querySelector("#modal");
-            const fade = document.querySelector("#fade");
+                const modal = document.querySelector("#modal");
+                const fade = document.querySelector("#fade");
 
 
-            modal.classList.remove("hide");
-            fade.classList.remove("hide");
-        });
-
-    
-        
+                modal.classList.remove("hide");
+                fade.classList.remove("hide");
+            });
+        }
     });
 
 

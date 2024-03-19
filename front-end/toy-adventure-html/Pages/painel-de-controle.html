@@ -13,10 +13,15 @@
     <header class="header"> <!-- Implementar logica para quando estiver logado aparecer o nome do usuario -->
         <img src="../Images/icones/Logo.png" alt="Logo ToyAdventure">
         <div class="container__profile">
-            <a href="#">
-                <p>Nome de usuário</p>
-                <img src="../Images/icones/account_circle.png" alt="Circle account">
+            <a href="#" id="profile-link">
+                <p id="user-name"></p>
+                <img src="../Images/icones/account_circle.png" alt="Circle account" id="account-icon">
             </a>
+            <div class="profile-menu" id="profile-menuu">
+                <p id="username"></p>
+                <p id="group"></p>
+                <a href="#" id="logout"><img src="../Images/icones/logout.svg" alt="logout">Sair</a>
+            </div>
         </div>
     </header>
     <section class="container__principal">
@@ -28,10 +33,8 @@
                 <a href="../Pages/listar-pedidos.html">Listar Pedidos</a>
             </div>
         </div>
-
-
-
     </section>
+    <script type="module" src="../JScript/header.js"></script>
 </body>
 
 </html>
