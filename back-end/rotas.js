@@ -10,7 +10,7 @@ const { validaCampoCadastro, validaCampoLogin, validaAlteracaoUsuario } = requir
 
 //rotas usuarios
 /* rotas.post('/usuario',  registrarUsuario); */ //cadastrarUsuario
-rotas.post('/login', validaCampoLogin, authentication); //login do usuario
+rotas.post('/login', authentication); //login do usuario
 /* rotas.get('/listar-usuario', listarUsuarios)
 rotas.put('/alterar-status', alterarStatusUsuario)
 rotas.get('/usuario', getUsuario); 
@@ -21,7 +21,8 @@ rotas.use(validaToken); //Os endpoints abaixo só podem funcionar se for valido 
 rotas.post('/usuario',  registrarUsuario); 
 rotas.get('/listar-usuario', listarUsuarios)
 rotas.get('/usuario', getUsuario); //detalhar usuario
-rotas.put('/alterar-usuario', validaAlteracaoUsuario, atualizarUsuario); //atualizar usuario
+rotas.put('/alterar-usuario', atualizarUsuario); //atualizar usuario
+rotas.put('/alterar-status', alterarStatusUsuario);
 
 
 module.exports = rotas;

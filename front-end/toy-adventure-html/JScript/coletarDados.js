@@ -7,18 +7,18 @@ export function coletarDados(inputs) {
         if (input.validity.valid) {
             const tipo = input.dataset.tipo;
             if ((tipo === 'admin' || tipo === 'estoquista') && !grupoDefinido) {
+                
                 dados['grupo'] = input.value;
                 grupoDefinido = true; // Define a variável como true para indicar que o grupo foi definido
+                console.log(dados['grupo'])
             } else {
                 dados[tipo] = input.value;
+                console.log( dados[tipo])
             }
         }
     });
     return dados;
 }
-
-
-
 
 const formulario = document.querySelector('form');
 if (formulario) {

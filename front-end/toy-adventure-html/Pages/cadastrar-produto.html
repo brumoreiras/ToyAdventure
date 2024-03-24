@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-painel-controle.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-listar-usuario.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-alterar-dados.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-cadastrar-produto.css" />
+
+    <title>ToyAdventure - Cadastrar Produto no Sistema</title>
+</head>
+
+<body>
+
+    <header class="header"> <!-- Implementar logica para quando estiver logado aparecer o nome do usuario -->
+        <img src="../Images/icones/Logo.png" alt="Logo ToyAdventure">
+        <div class="container__profile">
+            <a href="#">
+                <p>Nome de usuário</p>
+                <img src="../Images/icones/account_circle.png" alt="Circle account">
+            </a>
+        </div>
+    </header>
+    <section class="container__principal">
+        <div class="container__menu">
+            <h1>Menu</h1>
+            <nav class="menu__bar">
+                <a class="container__options__home" href="painel-de-controle.html"><img src="../Images/icones/home.svg"
+                        alt="Ícone home" />Home</a>
+                <a class="container__options__produto" href="listar-produtos"> <img src="../Images/icones/box.svg"
+                        alt="Ícone Produtos" />Produtos</a>
+                <a class="container__options__user" href="listar-usuario.html"><img
+                        src="../Images/icones/profile-person.svg" alt="Ícone Usuário" />Usuário</a>
+                <a class="container__options__pedido" href="listar-pedidos"><img src="../Images/icones/bag.svg"
+                        alt="Ícone Pedidos" />Pedidos</a>
+
+            </nav>
+        </div>
+
+        <div class="container__list">
+
+            <form action="" class="container__forms">
+                <h1>Cadastrar produto no sistema</h1>
+                <h2>Dados cadastrais</h2>
+
+                <div class="container__dados__pessoais">
+                    <div class="titulo">
+                        <span>Dados do Produto</span>
+                    </div>
+                    <div class="container__input__dados">
+                        <div class="login-container">
+                            <div class="input-wrapper">
+                                <label class="label__input">Nome do Produto</label>
+                                <input class="input__forms" type="text" value="" placeholder="Nome do produto" data-tipo="nome" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+                        <div class="login-container">
+                            <div class="input-wrapper">
+                                <label class="label__input">Preço</label>
+                                <input class="input__forms input-small" type="text" value="" placeholder="Preço" data-tipo="preco" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+                        <div class="login-container">
+                            <div class="input-wrapper">
+                                <label class="label__input">Quantidade</label>
+                                <input class="input__forms input-quantidade" type="text" value="" placeholder="Quantidade" data-tipo="quantidade" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <div class="container__grupo">
+                    <span>Detalhes do Produto</span>
+                    <div class="container__radios">
+                        <div class="login-container">
+                            <div class="input-wrapper">
+                                <label class="label__input">Avaliação</label>
+                                <input class="input__forms input_avaliacao" type="text" value="" placeholder="Avaliação" data-tipo="avaliacao" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="titulo">
+                    <span>Descrição</span>
+                </div>
+                <div class="container__senha">
+
+                    <div class="login-container">
+                        <div class="input-wrapper">
+                            <label class="label__input">Descrição</label>
+                            <input class="input__forms input__desc" type="descrição" value="" placeholder="" data-tipo="descrição"
+                                required>
+                            <span class="mensagem-erro"></span>
+                        </div>
+                    </div>
+                    <!-- <div class="login-container">
+                        <div class="input-wrapper">
+                            <label class="label__input">Confirme sua e-mail</label>
+                            <input class="input__forms" data-tipo="confirmeEmail" type="email" value=""
+                                placeholder="Confirme sua e-mail" data-tipo="confirmeEmail" required>
+                            <span class="mensagem-erro"></span>
+                        </div>
+                    </div> -->
+
+                </div>
+
+                <div class="titulo">
+                    <span>Imagens do produto</span>
+                </div>
+
+                <div class="container__imagens">
+                    <input type="file" id="inputImagem" accept="image/*" style="display: none;">
+                    <button id="btnUploadImagem" onclick="document.getElementById('inputImagem').click()">Upload</button>
+                </div>
+
+                <div class="container__addimg">
+                    <span>Imagens</span>
+                    <div class="imagem__container">
+                    <div class="imagem__item">
+                        <img src="/ToyAdventure-main/front-end/toy-adventure-html/Images/icones/buzz1.png" alt="Imagem 1" class="imagem__item">
+                         <input type="checkbox" class="selecionar__checkbox">
+                    </div>
+                    <div class="imagem__item">
+                        <img src="/ToyAdventure-main/front-end/toy-adventure-html/Images/icones/buzz2.png" alt="Imagem 2" class="imagem__item">
+                         <input type="checkbox" class="selecionar__checkbox">
+                    </div>
+                    <div class="imagem__item">
+                        <img src="/ToyAdventure-main/front-end/toy-adventure-html/Images/icones/buzz3.png" alt="Imagem 3" class="imagem__item">
+                         <input type="checkbox" class="selecionar__checkbox">
+                    </div>
+                    <div class="imagem__item">
+                        <img src="/ToyAdventure-main/front-end/toy-adventure-html/Images/icones/buzz4.png" alt="Imagem 4" class="imagem__item">
+                         <input type="checkbox" class="selecionar__checkbox">
+                    </div>
+                    <div class="imagem__item">
+                        <img src="/ToyAdventure-main/front-end/toy-adventure-html/Images/icones/buzz5.png" alt="Imagem 5" class="imagem__item">
+                         <input type="checkbox" class="selecionar__checkbox">
+                    </div>
+
+                    </div>
+                </div>
+                
+                
+            </form>
+
+            <div class="container__btn">
+                <button class="btn__ativar" href="alterar-dados.html">Salvar</button>
+                <button class="btn__desativar" href="../Pages/listar-usuario.html">Cancelar</button>
+            </div>
+        </div>    
+    </section>
+
+    <script type="module" src="../JScript/coletarDados.js"></script>
+    <script type="module" src="../JScript/inputValidation.js"></script>
+    <script type="module" src="../JScript/Requests/cadastrarUsuario.js"></script>
+    
+</body>
+
+</html>

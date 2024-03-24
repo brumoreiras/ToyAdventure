@@ -20,6 +20,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 16px;
+    background-color: #2B2D42;
 }
 
 .container__profile {
@@ -36,9 +37,11 @@ body {
     font-size: 22px;
     color: #D9D9D9;
 }
-.show{
+
+.show {
     display: block !important;
 }
+
 .profile-menu {
     display: none;
     border-radius: 8px;
@@ -54,16 +57,18 @@ body {
     z-index: 100;
 
 }
-.profile-menu p{
+
+.profile-menu p {
     padding: 4px;
-  
+
 }
-.profile-menu a{
+
+.profile-menu a {
     text-decoration: none;
     font-size: 16px;
     color: #000;
     padding: 4px;
-  
+
 }
 
 .container__principal {
@@ -103,4 +108,19 @@ body {
     padding: 24px 16px;
     border: 1px solid #000000;
     border-radius: 16px 8px;
+}
+
+.header-options {
+    color: #D9D9D9;
+    display: flex;
+    align-items: center;
+}
+.header-options a{
+    color: #D9D9D9;
+}
+
+.header-options-cad-log {
+    display: flex;
+    width: 180px;
+    gap: 4px;
 }

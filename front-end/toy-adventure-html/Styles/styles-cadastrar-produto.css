@@ -1,0 +1,121 @@
+.container__forms{
+    padding: 20px 16px;
+    margin-top: 16px;
+}
+.container__forms h1{
+ margin: 16px 0;
+}
+.container__forms h2{
+ margin-top: 16px;
+ margin: 16px 0;
+}
+.container__input__dados{
+    display: flex;
+}
+#confirmacao-entrada-cadastro-pf {
+   display: flex;
+   flex-wrap: wrap;
+
+}
+
+#confirmacao-entrada input {
+   margin: 0.3rem 0;
+   padding: 0.5rem 1rem;
+
+}
+
+.mensagem-erro {
+   display: block;
+   color: red;
+   font-family: 'Inter', sans-serif;
+   font-size: 0.8rem;
+   font-weight: bold 100;
+   margin-top: 0.5rem;
+   padding-left: 0.5rem;
+   margin-bottom: 0.5rem;
+}
+
+.erro input {
+   border: 0.1rem solid red;
+
+}
+
+.input-small {
+    width: 100px; 
+}
+
+.input-quantidade{
+    width: 100px; 
+}
+
+.input-wrapper{
+    margin-right: 20px;
+}
+
+.input__forms {
+    height: 24px;
+}
+
+.input_avaliacao{
+    width: 200px;
+    margin-top: -16px;
+}
+
+.input__desc{
+    width: 200px;
+    height: 111px;
+}
+
+#btnUploadImagem {
+    width: 60px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #B8C5D6;
+    color: black;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin-top: 16px; 
+}
+
+.imagem__container {
+    margin-top: 8px;
+    display: flex;
+}
+
+.imagem__item {
+    width: 100px;
+    height: 102px;
+    margin-right: 16px;
+}
+
+.container__addimg{
+    margin-top: 16px;
+    display: block;
+}
+
+.selecionar__checkbox {
+    margin-top: 8px; /* Espaçamento entre a imagem e a caixa de seleção */
+}
+
+.imagem__item {
+    position: relative; /* Para controlar o posicionamento da caixa de seleção */
+}
+
+.imagem__item img {
+    width: 100px;
+    height: 102px;
+    margin-right: 8px;
+}
+
+/* Estilizar o rótulo associado à caixa de seleção */
+.imagem__item label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 102px;
+    cursor: pointer;
+    z-index: 1; /* Garante que o rótulo esteja na frente da imagem */
+    opacity: 0; /* Torna o rótulo invisível, mas clicável */
+}

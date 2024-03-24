@@ -1,0 +1,40 @@
+#create_list_produto tr td:first-child,
+#create_list_produto tr td:nth-child(3),
+#create_list_produto tr td:nth-child(4),
+#create_list_produto tr td:nth-child(5),
+#create_list_produto tr td:nth-child(6),
+#create_list_produto tr td:nth-child(7) {
+   padding: 8px;
+    text-align: center; /* Alinha o texto no centro horizontalmente */
+}
+
+#create_list_produto tr img{
+    vertical-align: baseline;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+#pagination-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#prev-btn,
+#next-btn {
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#page-num {
+    font-weight: bold;
+}
+

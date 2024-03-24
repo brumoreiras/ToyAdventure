@@ -33,7 +33,9 @@ export function gerarTabelaUsuarios(usuarios) {
 
         // Adiciona a linha à tabela
         tabela.appendChild(row);
+
         if (isAdmin) {
+            console.log(isAdmin)
             const openModalButton = row.querySelector(".open-modal");
             openModalButton.addEventListener("click", () => {
                 document.getElementById('nome').value = usuario.nome;

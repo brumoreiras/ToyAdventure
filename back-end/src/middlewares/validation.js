@@ -24,12 +24,12 @@ module.exports = {
     },
 
     async validaAlteracaoUsuario(req, res, next) {
-        const { nome, cpf, email, senha, confirmacaoSenha, grupo } = req.body;
+        const { nome, senha, grupo } = req.body;
         const usuarioLogado = req.usuario; // Supondo que você tenha um middleware para identificar o usuário logado
 
         try {
             // Verifica se todos os campos necessários estão presentes
-            if (!nome || !cpf || !senha || !confirmacaoSenha || !grupo) {
+            if (!nome || !senha || !grupo) {
                 return res.status(400).json({ mensagem: 'Todos os campos (nome, cpf, senha, confirmação de senha, grupo) são obrigatórios para a alteração.' });
             }
 
@@ -38,10 +38,6 @@ module.exports = {
                 return res.status(400).json({ mensagem: 'A senha e a confirmação de senha não coincidem.' });
             }
 
-            // Verifica se é permitido alterar o email
-            if (email && email !== usuarioLogado.email) {
-                return res.status(400).json({ mensagem: 'Não é permitido alterar o email.' });
-            }
 
             // Verifica se é permitido alterar o grupo
             if (grupo && grupo !== usuarioLogado.grupo) {
@@ -57,7 +53,6 @@ module.exports = {
             req.usuario = { // Atualiza o objeto de usuário com as informações alteradas
                 ...usuarioLogado,
                 nome,
-                cpf,
                 senha: senhaEncriptada,
                 grupo
             };

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-painel-controle.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-listar-usuario.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-alterar-dados.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-cadastrar-usuario.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-listar-produtos.css" />
+    <title>ToyAdventure - Lista de usuário</title>
+</head>
+
+<body>
+    <header class="header"> <!-- Implementar logica para quando estiver logado aparecer o nome do usuario -->
+        <img src="../Images/icones/Logo.png" alt="Logo ToyAdventure">
+        <div class="container__profile">
+            <a href="#" id="profile-link">
+                <p id="user-name"></p>
+                <img src="../Images/icones/account_circle.png" alt="Circle account" id="account-icon">
+            </a>
+            <div class="profile-menu" id="profile-menuu">
+                <p id="username"></p>
+                <p id="group"></p>
+                <a href="#" id="logout"><img src="../Images/icones/logout.svg" alt="logout">Sair</a>
+            </div>
+        </div>
+    </header>
+    <section class="container__principal">
+        <div class="container__menu">
+            <h1>Menu</h1>
+            <nav class="menu__bar">
+                <a class="container__options__home" href="painel-de-controle.html"><img src="../Images/icones/home.svg"
+                        alt="Ícone home" />Home</a>
+                <a class="container__options__produto" href="#"> <img src="../Images/icones/box.svg"
+                        alt="Ícone Produtos" />Produtos</a>
+                <a class="container__options__user" href="listar-usuario.html"><img
+                        src="../Images/icones/profile-person.svg" alt="Ícone Usuário" />Usuário</a>
+                <a class="container__options__pedido" href="listar-pedidos"><img src="../Images/icones/bag.svg"
+                        alt="Ícone Pedidos" />Pedidos</a>
+
+            </nav>
+        </div>
+
+        <div class="container__list">
+            <div class="container__list__header">
+                <h1>Consultar Produtos</h1>
+                <input type="text" placeholder="Pesquisar usuário" />
+                <a class="button__hedar__list" href="cadastrar-produto.html"><img
+                        src="../Images/icones/Group 1.svg">Adicionar</a>
+            </div>
+            <div class="container__table container__table__produto">
+                <h2>Lista de Produtos </h2>
+                <div class="table-container">
+                    <table id="my-table">
+                        <thead class="table__header table__header__produto">
+                            <tr>
+                                <th>Código Produto</th>
+                                <th>Nome Produto</th>
+                                <th>Quantidade estoque</th>
+                                <th>Status</th>
+                                <th>Alterar</th>
+                                <th>Alterar Status</th>
+                                <th>Visualizar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="create_list_produto">
+                            <tr>
+                                <td>01</td>
+                                <td>Boneco Mascote de Futenool</td>
+                                <td>01</td>
+                                <td>Ativo</td>
+                                <td className="button-cell">
+                                    <a class="btn__alterar" href="alterar-dados.html">Alterar</a>
+                                </td>
+                                <td className="button-cell">
+                                    <button class="btn__desativar" href="alterar-dados.html">Desativar</button>
+                                </td>
+                                <td><a href="../../Ecommerce/Pages/detalhe-produto.html"><img
+                                            src="../Images/icones/inventory.svg" alt=""></a>
+                                    <!-- Na logica que vai criar a lista de produtos deverá ter uma ação de click para quando clica no icone seja direcionado para a pagina de detalhes
+                                caminho para navegar até a pagina ../../Ecommerce/Pages/detalhe-produto.html                               -->
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pagination-container">
+                    <button id="prev-btn">Anterior</button>
+                    <span id="page-num"></span>
+                    <button id="next-btn">Próximo</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <script type="module" src="../JScript/listarUsuarioDoBanco.js"></script>
+    <script type="module" src="../JScript/Requests/listarUsuario.js"></script>
+    <script type="module" src="../JScript/Requests/getUsuario.js"></script>
+    <script type="module" src="../JScript/Requests/alterarDadosUsuario.js"></script>
+    <script type="module" src="../JScript/modal.js"></script>
+    <script type="module" src="../JScript/Requests/alterarStatus.js"></script>
+    <script type="module" src="../JScript/header.js"></script>
+    <script type="module" src="../JScript/paginacao.js"></script>
+</body>
+
+</html>
