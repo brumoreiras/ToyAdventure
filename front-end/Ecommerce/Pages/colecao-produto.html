@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../toy-adventure-html/Styles/styles-painel-controle.css" />
     <link rel="stylesheet" type="text/css" href="../Styles/style-detalhe-produto.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/style-colecao-produto.css" />
     <title>ToyAdventure - Painel de Controle</title>
 
 </head>
@@ -13,7 +14,7 @@
 <body>
     <header class="header">
         <img src="../../toy-adventure-html/Images/icones/Logo.png" alt="Logo ToyAdventure">
-        
+
         <div class="menu__nav">
             <nav>
                 <ul>
@@ -34,46 +35,24 @@
     </header>
 
 
-    <section class="container__produto">
-        <div class="container__conteudo__prod">
-            <div class="container__image__prod">
+    <section class="container__card">
+        <div class="container__conteudo__card">
+            <div class="container__image__card">
                 <img src="../Images/imagens produto/Frame 70.png" alt="">
             </div>
-            <p>Passe o mouse para ampliar a imagem</p>
-            <div class="container__carrossel">
-                <img src="../Images/imagens produto/Frame 70.png" alt="01">
-                <img src="../Images/imagens produto/Frame 70.png" alt="01">
-                <img src="../Images/imagens produto/Frame 70.png" alt="01">
-                <img src="../Images/imagens produto/Frame 70.png" alt="01">
-                <img src="../Images/imagens produto/Frame 70.png" alt="01">
+            <div class="titulo__card">
+                <h1>Sonic</h1>
             </div>
+            <div class="valor__card">
+                <p>R$ 150,00</p>
+            </div>
+            <div class="btn__card">
+                <button class="comprar">Comprar</button>
+            </div>
+
+
         </div>
 
-        <div class="conteudo">
-            <div class="container__conteudo_detalhe">
-                <div class="titulo">
-                    <h1>Boneco Sonic</h1>
-                </div>
-                <div class="container__avaiacao">
-                    <p>Avaliação: 4.5</p>
-                </div>
-                <div class="container__detalhe">
-                    <h2>Descrição</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in libero tortor. Aenean
-                        maximus risus venenatis ligula pretium pellentesque. Fusce porta tempus porta. Nulla sed urna
-                        tincidunt, suscipit dolor pulvinar, congue libero. Duis vitae sem quis mauris ultrices cursus.
-                        Donec diam elit, pretium id viverra ac, vestibulum sit amet mauris. Donec sed facilisis dolor.
-                        Pellentesque id massa arcu.</p>
-                </div>
-            </div>
-            <div class="container__preco">
-                <h3>R$ 150,00</h3>
-                <div class="container__botoes">
-                    <button id="adicionarCarrinho">Adicionar ao carrinho</button>
-                    <button id="comprar">Comprar agora</button>
-                </div>
-            </div>
-        </div>
     </section>
     <script type="module" src="../JScript/header.js"></script>
 </body>
