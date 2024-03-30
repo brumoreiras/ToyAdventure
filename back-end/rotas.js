@@ -6,7 +6,7 @@ const { registrarUsuario, getUsuario, atualizarUsuario, listarUsuarios, alterarS
 
 const { authentication, validaToken } = require('./src/middlewares/authentication.js');
 const { validaCampoCadastro, validaCampoLogin, validaAlteracaoUsuario } = require('./src/middlewares/validation.js');
-
+const { cadastroProdutos } = require('./src/controladores/produtoController.js');
 
 //rotas usuarios
 /* rotas.post('/usuario',  registrarUsuario); */ //cadastrarUsuario
@@ -15,6 +15,8 @@ rotas.post('/login', authentication); //login do usuario
 rotas.put('/alterar-status', alterarStatusUsuario)
 rotas.get('/usuario', getUsuario); 
 rotas.put('/alterar-usuario', atualizarUsuario) */
+
+rotas.post('/produto', cadastroProdutos);
 
 
 rotas.use(validaToken); //Os endpoints abaixo só podem funcionar se for valido o token. 
