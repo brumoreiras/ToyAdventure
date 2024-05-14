@@ -1,4 +1,4 @@
-CREATE DATABASE toyadventure01;
+CREATE DATABASE toyadventure02;
 
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
