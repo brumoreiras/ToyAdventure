@@ -98,3 +98,35 @@ body{
     justify-content: center;
     padding: 16px;
 }
+/* Adicionando estilos para o carrossel de imagens */
+ 
+
+/* Estilizando a imagem principal */
+.container__image__prod img {
+    width: 433px;
+    height: 330px;
+    border-radius: 4px;
+}
+.container__image__prod {
+    position: relative; /* Para posicionar as setas em relação a este contêiner */
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1; /* Para garantir que as setas fiquem acima das imagens */
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
