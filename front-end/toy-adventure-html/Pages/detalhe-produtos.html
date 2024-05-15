@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Styles/styles-painel-controle.css" />
+    <link rel="stylesheet" type="text/css" href="../../Ecommerce/Styles/style-detalhe-produto.css" />
+    <title>ToyAdventure - Detalhe do Produto</title>
+
+</head>
+
+<body>
+    <header class="header"> <!-- Implementar logica para quando estiver logado aparecer o nome do usuario -->
+        <img src="../Images/icones/Logo.png" alt="Logo ToyAdventure">
+        <div class="container__profile">
+            <a href="#" id="profile-link">
+                <p id="user-name"></p>
+                <img src="../Images/icones/account_circle.png" alt="Circle account" id="account-icon">
+            </a>
+            <div class="profile-menu" id="profile-menuu">
+                <p id="username"></p>
+                <p id="group"></p>
+                <a href="#" id="logout"><img src="../Images/icones/logout.svg" alt="logout">Sair</a>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="container__produto">
+        <div class="container__conteudo__prod">
+            <div class="container__image__prod" id="img-principal">
+                <img id="img-marq-principal" src="../../Ecommerce/Images/imagens produto/Frame 70.png" alt="">
+            </div>
+            <p>Passe o mouse para ampliar a imagem</p>
+            <div class="container__carrossel">
+                <img src="../../Ecommerce/Images/imagens produto/Frame 70.png" alt="01" onclick="changeImage(this)">
+                <img src="../../Ecommerce/Images/imagens produto/2.jpg" alt="02" onclick="changeImage(this)">
+                <img src="../../Ecommerce/Images/imagens produto/3.jpg" alt="03" onclick="changeImage(this)">
+                <img src="../../Ecommerce/Images/imagens produto/4.jpg" alt="04" onclick="changeImage(this)">
+                <img src="../../Ecommerce/Images/imagens produto/5.jpg" alt="05" onclick="changeImage(this)">
+            </div>
+        </div>
+
+        <div class="conteudo">
+            <div class="container__conteudo_detalhe">
+                <div class="titulo">
+                    <h1>Boneco Sonic</h1>
+                </div>
+                <div class="container__avaiacao">
+                    <p>Avaliação: 4.5</p>
+                </div>
+                <div class="container__detalhe">
+                    <h2>Descrição</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in libero tortor. Aenean
+                        maximus risus venenatis ligula pretium pellentesque. Fusce porta tempus porta. Nulla sed urna
+                        tincidunt, suscipit dolor pulvinar, congue libero. Duis vitae sem quis mauris ultrices cursus.
+                        Donec diam elit, pretium id viverra ac, vestibulum sit amet mauris. Donec sed facilisis dolor.
+                        Pellentesque id massa arcu.</p>
+                    <br><strong>Valor</strong>
+                    <p id="valor">R$ 150,00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="../JScript/header.js"></script>
+    <script>
+        function changeImage(element) {
+            var imgPrincipal = document.getElementById("img-marq-principal");
+            imgPrincipal.src = element.src;
+        }
+
+        
+    </script>
+</body>
+
+</html>

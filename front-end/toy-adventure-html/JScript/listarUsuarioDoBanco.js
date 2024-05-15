@@ -29,6 +29,9 @@ export function gerarTabelaUsuarios(usuarios) {
                     ${usuario.ativo ? 'Desativar' : 'Ativar'}
                 </button>
             </td>
+            <td style="text-align: center;">
+                <img src="/ToyAdventure/front-end/toy-adventure-html/Images/icones/delete.svg" alt="icone de uma lixeira para deletar dados cadastrados">
+            </td>
         `;
 
         // Adiciona a linha à tabela
