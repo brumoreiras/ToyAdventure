@@ -5,17 +5,13 @@ import java.util.Set;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import br.senac.tads.api.domain.usuario.LogarUsuarioDTO;
-import br.senac.tads.api.domain.usuario.Premissoes;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -25,7 +21,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "tb_usuarios")
 @Entity(name = "Usuario")
 @EqualsAndHashCode(of = "id")
-
 public class Usuario implements UserDetails {
 
 	@Id
@@ -45,24 +40,22 @@ public class Usuario implements UserDetails {
 	@Column(unique = true, nullable = false)
 	private String email;
 
-	// Validação de hashSenha se é igual a confirmação de hashSenha
 	@NotBlank(message = "Senha obrigatória")
-	// @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message
-	// = "hashSenha inválida")
 	private String hashSenha;
 
 	private Boolean ativo;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "tb_usuarios_permissoes", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "permissao_id"))
-	private Set<Permissao> permissoes;
+	@ManyToOne
+	@JoinColumn(name = "permissao_id", referencedColumnName = "id") // Referencia correta para a chave primária
+																	// Permissao
+	private Permissao permissao;
 
-	public Set<Permissao> getPermissoes() {
-		return permissoes;
+	public Permissao getPermissao() {
+		return permissao;
 	}
 
-	public void setPermissoes(Set<Permissao> permissoes) {
-		this.permissoes = permissoes;
+	public void setPermissao(Permissao permissao) {
+		this.permissao = permissao;
 	}
 
 	public Usuario(String email) {
@@ -74,21 +67,17 @@ public class Usuario implements UserDetails {
 		this.hashSenha = usuario.senha();
 	}
 
-	// Construtor padrão
 	public Usuario() {
 	}
 
-	// Cadastro de usuário
-	public Usuario(String nome, String cpf, String email, String hashSenha, Premissoes tipo, Boolean ativo) {
+	public Usuario(String nome, String cpf, String email, String hashSenha, Permissao permissao, Boolean ativo) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.hashSenha = hashSenha;
+		this.permissao = permissao;
 		this.ativo = ativo;
-		this.permissoes = Set.of(new Permissao(tipo.toString()));
 	}
-
-	// Atualização de usuário
 
 	public Long getId() {
 		return id;
@@ -122,11 +111,11 @@ public class Usuario implements UserDetails {
 		this.email = email;
 	}
 
-	public String gethashSenha() {
+	public String getHashSenha() {
 		return hashSenha;
 	}
 
-	public void sethashSenha(String hashSenha) {
+	public void setHashSenha(String hashSenha) {
 		this.hashSenha = hashSenha;
 	}
 
@@ -140,7 +129,7 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public Set<Permissao> getAuthorities() {
-		return permissoes;
+		return Set.of(permissao);
 	}
 
 	@Override
