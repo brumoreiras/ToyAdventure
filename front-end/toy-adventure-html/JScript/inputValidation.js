@@ -41,7 +41,7 @@ const mensagemErro = {
     nome: {
         valueMissing: 'O campo nome não pode estar vazio.'
     },
-    cpf: {
+    cpf_valid: {
         valueMissing: 'O campo CPF não pode estar vazio.',
         patternMismatch: 'CPF inválido. Digite no formato xxx.xxx.xxx-xx.'
     },
@@ -68,7 +68,22 @@ const mensagemErro = {
         valueMissing: 'O campo de senha não pode estar vazio.',
         patternMismatch: 'A senha deve conter entre 6 à 8 caracteres, deve conter pelo menos uma letra maiúscula, um número e não deve conter caractere especial.',
         customError: 'A senha digita não confere.'
-    }
+    },
+    nome_produto: {
+        valueMissing: 'O campo nome do produto não pode estar vazio.'
+    },
+    preco: {
+        valueMissing: 'O campo preço não pode estar vazio.'
+    },
+    quantidade: {
+        valueMissing: 'O campo quantidade não pode estar vazio.'
+    },
+    avaliacao: {
+        valueMissing: 'O campo avaliação não pode estar vazio.'
+    },
+    descricao: {
+        valueMissing:'O campo descrição não pode estar vazio.'
+    },
 }
 // --------------- Responsável em validar as funções e retornar os erros se necessario --------------------------
 const validadores = {
