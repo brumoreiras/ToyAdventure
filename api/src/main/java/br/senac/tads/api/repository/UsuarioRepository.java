@@ -12,4 +12,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public boolean existsByEmail(String email);
 
+	Iterable<Usuario> findByNomeContaining(String nome);
+
 }

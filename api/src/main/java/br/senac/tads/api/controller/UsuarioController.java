@@ -54,6 +54,20 @@ public class UsuarioController {
 		return ResponseEntity.ok(lista);
 	}
 
+	// Obter um usuário pelo ID
+	@GetMapping("/{id}")
+	public ResponseEntity<Usuario> obterUsuario(@PathVariable Long id) {
+		return repository.findById(id).map(usuario -> ResponseEntity.ok(usuario))
+				.orElse(ResponseEntity.notFound().build());
+	}
+
+	// Pesquisar um usuário por nome
+	@GetMapping("/pesquisar")
+	public ResponseEntity<Iterable<Usuario>> pesquisarUsuario(@RequestBody String nome) {
+		Iterable<Usuario> usuarios = repository.findByNomeContaining(nome);
+		return ResponseEntity.ok(usuarios);
+	}
+
 	@SuppressWarnings("rawtypes")
 	@PostMapping("/cadastrar")
 	public ResponseEntity cadastrarUsuario(@RequestBody @Valid CadastroUsuarioDTO usuario) {
@@ -126,5 +140,35 @@ public class UsuarioController {
 		usuario.setId(id);
 		usuario = repository.save(usuario);
 		return ResponseEntity.ok("Usuário atualizado com sucesso");
+	}
+
+	// DTO Record para atualizar a senha de um usuário
+	public record AtualizarSenhaDTO(String senhaAtual, String novaSenha, String confirmacaoSenha) {
+	}
+
+	// Método para atualizar a senha de um usuário
+	@PutMapping("/{id}/senha")
+	public ResponseEntity<String> atualizarSenha(@PathVariable Long id,
+			@RequestBody AtualizarSenhaDTO senha) {
+		Usuario usuario = repository.findById(id).get();
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		if (!encoder.matches(senha.senhaAtual(), usuario.getHashSenha())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Senha atual incorreta");
+		}
+		if (!senha.novaSenha().equals(senha.confirmacaoSenha())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("As senhas não conferem");
+		}
+		usuario.setHashSenha(encoder.encode(senha.novaSenha()));
+		repository.save(usuario);
+		return ResponseEntity.ok("Senha atualizada com sucesso");
+	}
+
+	// Método para atualizar o status de um usuário
+	@PutMapping("/{id}/status")
+	public ResponseEntity<String> atualizarStatus(@PathVariable Long id, @RequestBody Boolean ativo) {
+		Usuario usuario = repository.findById(id).get();
+		usuario.setAtivo(ativo);
+		repository.save(usuario);
+		return ResponseEntity.ok("Status atualizado com sucesso");
 	}
 }
