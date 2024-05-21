@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./Styles/styles-index.css" />
+    <title>ToyAdventure - Login</title>
+</head>
+
+<body>
+    <section class="container__principal">
+
+        <div class="container__login">
+            <div class="container__info">
+                <div class="container__titulo">
+                    <img src="./Images/icones/ToyAdventure.svg" alt="Logo ToyAdventure" />
+                    <span>Entre para começar sua jornada de gerenciamento! </span>
+                </div>
+                <div class="container__texto">
+                    <span>Bem-vindo ao ToyAdventure, seu portal para explorar um mundo de diversão e gerenciar com
+                        facilidade o estoque de produtos, usuários administrativos e do sistema. </span>
+                </div>
+            </div>
+
+            <div class="container__inputs">
+                <form action="#" id="fomrLogin">
+                    <h1>Login</h1>
+                    <div class="container__input__login">
+                        <div class="input-box-login">
+                            <label for="e-mail">E-mail</label>
+                            <input type="email" name="email" value="" id="emailL" placeholder="exemplo@exemplo.com.br"
+                                required>
+                            <span class="mensagem-erro"></span>
+                        </div>
+                        <div class="input-box-login">
+                            <label for="confirme-password">Senha</label>
+                            <input type="password" name="confirme-password" value="" id="senhaA"
+                                placeholder="Digite sua senha" required>
+                            <span class="mensagem-erro"></span>
+                        </div>
+                    </div>
+                    <div class="container__buttons">
+                        <div class="entrar-login ">
+                            <button type="submit" id="botao">LOGIN</button>
+                        </div>
+                        <div class="entrar-login ">
+                            <button type="submit">CANCELAR</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="./JScript/inputValidation.js"></script>
+    <script type="module" src="./JScript/Requests/login.js"></script>
+</body>
+
+</html>
