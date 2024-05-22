@@ -59,7 +59,7 @@
                         <div class="login-container">
                             <div class="input-wrapper">
                                 <label class="label__input">Nome completo</label>
-                                <input class="input__forms" type="text" value="" placeholder="Nome completo"
+                                <input class="input__forms" id="nome" type="text" value="" placeholder="Nome completo"
                                     data-tipo="nome" required>
                                 <span class="mensagem-erro"></span>
                             </div>
@@ -67,7 +67,7 @@
                         <div class="login-container">
                             <div class="input-wrapper">
                                 <label class="label__input">CPF</label>
-                                <input class="input__forms" type="text" value="" placeholder="CPF" data-tipo="cpf_valid"
+                                <input class="input__forms" id="cpf" type="text" value="" placeholder="CPF" data-tipo="cpf_valid"
                                     required>
                                 <span class="mensagem-erro"></span>
                             </div>
@@ -79,13 +79,13 @@
                     <span>Permissões do sistema / Grupo</span>
                     <div class="container__radios">
                         <div class="container__input__radio">
-                            <input class="" type="radio" value="admin" data-tipo="admin" required
+                            <input class="" type="radio" value="ADMINISTRADOR" data-tipo="admin" required
                                 name="permissao">
                             <label class="">Administrador</label>
                             <span class="mensagem-erro"></span>
                         </div>
                         <div class="container__input__radio">
-                            <input class="" type="radio" value="estoquista" data-tipo="estoquista" required
+                            <input class="" type="radio" value="ESTOQUISTA" data-tipo="estoquista" required
                                 name="permissao">
                             <label class="">Estoquista</label>
                             <span class="mensagem-erro"></span>
@@ -101,7 +101,7 @@
                     <div class="login-container">
                         <div class="input-wrapper">
                             <label class="label__input">E-mail</label>
-                            <input class="input__forms" type="email" value="" placeholder="E-mail" data-tipo="email"
+                            <input class="input__forms" id="email" type="email" value="" placeholder="E-mail" data-tipo="email"
                                 required>
                             <span class="mensagem-erro"></span>
                         </div>
@@ -126,7 +126,7 @@
                     <div class="login-container">
                         <div class="input-wrapper">
                             <label class="label__input">Senha</label>
-                            <input class="input__forms" type="password" value="" placeholder="Senha" data-tipo="senha"
+                            <input class="input__forms" id="senha" type="password" value="" placeholder="Senha" data-tipo="senha"
                                 required>
                             <span class="mensagem-erro"></span>
                         </div>
@@ -134,7 +134,7 @@
                     <div class="login-container">
                         <div class="input-wrapper">
                             <label class="label__input">Confirme sua senha</label>
-                            <input class="input__forms" data-tipo="confirmePassword" type="password" value=""
+                            <input class="input__forms" id="confirmacaoSenha" data-tipo="confirmePassword" type="password" value=""
                                 placeholder="Confirme sua senha" data-tipo="confirmePassword" required>
                             <span class="mensagem-erro"></span>
                         </div>

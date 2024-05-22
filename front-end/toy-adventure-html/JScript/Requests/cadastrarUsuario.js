@@ -3,28 +3,28 @@ function navigate(route) {
 }
 
 export async function aoSalvar(dados) {
-    console.log('O que está sendo recebido:::> ', dados)
-    const { nome, cpf, email, grupo, senha } = dados;
-    console.table(dados)
+    // console.log('O que está sendo recebido:::> ', dados)
+    // const { nome, cpf, email, grupo, senha } = dados;
+    // console.table(dados)
+
+
+    // debugger;
 
     try {
-        const token = localStorage.getItem('token');
-        console.log('token :::> ', token)
+        // const token = localStorage.getItem('token');
+        // console.log('token :::> ', token)
 
-        const response = await fetch("http://localhost:3033/usuario", {
+        const response = await fetch("https://toyadventure.onrender.com/usuario/cadastrar", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                nome, cpf, email, grupo, senha,
-            })
+            body: JSON.stringify(dados)
         })
 
         if (response.ok) {
            /*  navigate("/ToyAdventure/front-end/toy-adventure-html/Pages/listar-usuario.html"); */
-            navigate("/front-end/toy-adventure-html/Pages/listar-usuario.html");
+            navigate("/Pages/listar-usuario.html");
             console.table('Retorno dos dados', dados)
         } else {
 
