@@ -164,10 +164,13 @@ public class UsuarioController {
 	}
 
 	// Método para atualizar o status de um usuário
+	public record AtualizarStatusDTO(Boolean ativo) {
+	}
+
 	@PutMapping("/{id}/status")
-	public ResponseEntity<String> atualizarStatus(@PathVariable Long id, @RequestBody Boolean ativo) {
+	public ResponseEntity<String> atualizarStatus(@PathVariable Long id, @RequestBody AtualizarStatusDTO status) {
 		Usuario usuario = repository.findById(id).get();
-		usuario.setAtivo(ativo);
+		usuario.setAtivo(status.ativo());
 		repository.save(usuario);
 		return ResponseEntity.ok("Status atualizado com sucesso");
 	}
