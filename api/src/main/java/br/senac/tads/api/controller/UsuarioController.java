@@ -24,6 +24,7 @@ import br.senac.tads.api.entities.Usuario;
 import br.senac.tads.api.repository.PermissaoRepository;
 import br.senac.tads.api.repository.UsuarioRepository;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -143,22 +144,33 @@ public class UsuarioController {
 	}
 
 	// DTO Record para atualizar a senha de um usuário
-	public record AtualizarSenhaDTO(String senhaAtual, String novaSenha, String confirmacaoSenha) {
+	public record AtualizarSenhaDTO(
+			@NotBlank(message = "Senha atual não pode ser nula ou vazia") String senhaAtual,
+			@NotBlank(message = "Nova senha não pode ser nula ou vazia") String novaSenha,
+			@NotBlank(message = "Confirmação de senha não pode ser nula ou vazia") String confirmacaoSenha) {
+
+		// Validação de senha e com a confirmação de senha
+		public AtualizarSenhaDTO {
+			if (!novaSenha.equals(confirmacaoSenha)) {
+				throw new IllegalArgumentException("As senhas não conferem");
+			}
+
+			if (senhaAtual.equals(novaSenha)) {
+				throw new IllegalArgumentException("A nova senha não pode ser igual à senha atual");
+			}
+		}
 	}
 
 	// Método para atualizar a senha de um usuário
 	@PutMapping("/{id}/senha")
 	public ResponseEntity<String> atualizarSenha(@PathVariable Long id,
-			@RequestBody AtualizarSenhaDTO senha) {
+			@RequestBody @Valid AtualizarSenhaDTO senha) {
 		Usuario usuario = repository.findById(id).get();
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		if (!encoder.matches(senha.senhaAtual(), usuario.getHashSenha())) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Senha atual incorreta");
+		if (!new BCryptPasswordEncoder().matches(senha.senhaAtual(), usuario.getPassword())) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Senha atual inválida");
 		}
-		if (!senha.novaSenha().equals(senha.confirmacaoSenha())) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("As senhas não conferem");
-		}
-		usuario.setHashSenha(encoder.encode(senha.novaSenha()));
+		String encodedPassword = new BCryptPasswordEncoder().encode(senha.novaSenha());
+		usuario.setHashSenha(encodedPassword);
 		repository.save(usuario);
 		return ResponseEntity.ok("Senha atualizada com sucesso");
 	}
