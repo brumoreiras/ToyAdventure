@@ -32,6 +32,7 @@ form.addEventListener('submit', async (event) => {
            
             // Login válido
             navigate("/front-end/toy-adventure-html/Pages/painel-de-controle.html");
+            navigate("./");
             /* console.log("Login realizado com sucesso ",data.nomeUsuario); */
         } else {
             alert('Se um cliente entrar com email e senha o mesmo deve ser rejeitado. Esta tela de login é apenas para usuários de backoffice');
