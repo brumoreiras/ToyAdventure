@@ -165,6 +165,20 @@
         </div>
 
     </section>
+
+    <!-- MODAL DE CONFIRMAÇÃO DE DELEÇÃO -->
+    <dialog id="mdl_confirm">
+        <form id="formulario-delete" data-id="">
+            <h1>Deletar Usuário</h1>
+            <h2>Tem certeza que deseja deletar o usuário?</h2>
+            <div class="container__btn">
+                <button type="submit" class="btn_confirm_delete" id="deletar-usuario">Deletar</button>
+                <button autofocus class="btn_cancel_delete" id="close-modal-delete">Cancelar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="../JScript/Requests/deleteUsuario.js"></script>
     <script type="module" src="../JScript/listarUsuarioDoBanco.js"></script>
     <script type="module" src="../JScript/Requests/listarUsuario.js"></script>
 
