@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.senac.tads.api.domain.usuario.CadastroUsuarioDTO;
 import br.senac.tads.api.domain.usuario.ListaUsuario;
-import br.senac.tads.api.domain.usuario.Premissoes;
 import br.senac.tads.api.entities.Permissao;
 import br.senac.tads.api.entities.Usuario;
 import br.senac.tads.api.repository.PermissaoRepository;
@@ -55,10 +54,14 @@ public class UsuarioController {
 		return ResponseEntity.ok(lista);
 	}
 
+	public record getUsuario(String id, String nome, String permissao, boolean ativo) {
+	}
+
 	// Obter um usuário pelo ID
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> obterUsuario(@PathVariable Long id) {
-		return repository.findById(id).map(usuario -> ResponseEntity.ok(usuario))
+	public ResponseEntity<getUsuario> obterUsuario(@PathVariable Long id) {
+		return repository.findById(id).map(usuario -> ResponseEntity.ok(new getUsuario(usuario.getId().toString(),
+				usuario.getNome(), usuario.getPermissao().getNome(), usuario.getAtivo())))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
@@ -84,7 +87,7 @@ public class UsuarioController {
 		}
 		System.out.println(usuario.permissao());
 
-		// Verifica se a permissão já existe -- falta verificar existe no Enum-
+		// Verifica se a permissão já existe -- falta verificar existe no Enum - upcase
 		Permissao permissaoExistente = permissaoRepository.findByNome(usuario.permissao());
 		Permissao permissao;
 		if (permissaoExistente == null) {
@@ -114,32 +117,34 @@ public class UsuarioController {
 		return ResponseEntity.noContent().build();
 	}
 
+	public record AtualizarUsuarioDTO(String nome, String senha, String permissao) {
+	}
+
 	// Método para atualizar um usuário
 	// Apenas o administrador pode atualizar qualquer usuário
 	// outros usuários só podem atualizar a si mesmos e não podem alterar a
 	// permissão e o status
-	@SuppressWarnings("unlikely-arg-type")
+
 	@PutMapping("/{id}")
 	public ResponseEntity<String> atualizarUsuario(@PathVariable Long id,
-			@RequestBody Usuario usuario) {
-		if (!repository.existsById(id)) {
+			@RequestBody AtualizarUsuarioDTO usuario) {
+		Usuario usuarioAtual = repository.findById(id).get();
+		if (usuarioAtual == null) {
 			return ResponseEntity.notFound().build();
 		}
-		// Se o usuário não for administrador, ele só pode atualizar a si mesmo
-		// e não pode alterar a permissão e o status
-		if (!usuario.getPermissao().getNome().equals(Premissoes.ADMINISTRADOR)) {
-			Usuario usuarioLogado = repository.findById(id).get();
-			if (!usuarioLogado.getId().equals(usuario.getId())) {
-				return ResponseEntity.status(HttpStatus.FORBIDDEN)
-						.body("Você não tem permissão para atualizar este usuário");
-			}
-			usuario.setPermissao(usuarioLogado.getPermissao()); // Changed method call from setPermissoes() to
-																// setPermissao()
-			usuario.setAtivo(usuarioLogado.getAtivo());
+
+		usuarioAtual.setNome(usuario.nome());
+		if (usuario.senha() != null) {
+			String encodedPassword = new BCryptPasswordEncoder().encode(usuario.senha());
+			usuarioAtual.setHashSenha(encodedPassword);
 		}
 
-		usuario.setId(id);
-		usuario = repository.save(usuario);
+		Permissao permissao = permissaoRepository.findByNome(usuario.permissao());
+		if (permissao != null) {
+			usuarioAtual.setPermissao(permissao);
+		}
+		repository.save(usuarioAtual);
+
 		return ResponseEntity.ok("Usuário atualizado com sucesso");
 	}
 
