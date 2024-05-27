@@ -19,7 +19,7 @@ export function gerarTabelaUsuarios(usuarios) {
             <td>${usuario.permissao}
             <td>${usuario.ativo ? 'Ativo' : 'Inativo'}</td>
             <td class="button-cell">
-                    <button  class="btn__alterar open-modal" data-id="${usuario.id}">Alterar</button>
+                    <button class="btn__alterar open-modal" data-id="${usuario.id}">Alterar</button>
             </td>
             <td class="button-cell">
                 <button class="btn__desativar ${usuario.ativo ? 'desativar' : 'ativar'}" 
@@ -29,7 +29,9 @@ export function gerarTabelaUsuarios(usuarios) {
                 </button>
             </td>
             <td style="text-align: center;">
-                <img src="/Images/icones/delete.svg" alt="icone de uma lixeira para deletar dados cadastrados">
+                <button class="btn_delete" type="button"onclick="deletarUsuario(${usuario.id})">
+                    Deletar
+                </button>
             </td>
         `;
 
