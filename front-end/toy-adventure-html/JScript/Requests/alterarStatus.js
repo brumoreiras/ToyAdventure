@@ -10,15 +10,14 @@ async function alterarStatusUsuario(id, ativo, botao) {
 
     try {
         const token = localStorage.getItem('token');
-        console.log('token :::> ', token)
 
-        const response = await fetch(`http://localhost:3033/alterar-status?id=${id}`, {
+        const response = await fetch(`https://toyadventure.onrender.com/usuario/${id}/status`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ ativo }) // Passando diretamente o valor booleano
+            body: JSON.stringify({ ativo: !ativo })
         });
 
         if (response.ok) {
