@@ -10,10 +10,8 @@ export function coletarDados(inputs) {
                 
                 dados['grupo'] = input.value;
                 grupoDefinido = true; // Define a variável como true para indicar que o grupo foi definido
-                console.log(dados['grupo'])
             } else {
                 dados[tipo] = input.value;
-                console.log( dados[tipo])
             }
         }
     });
@@ -24,9 +22,21 @@ const formulario = document.querySelector('form');
 if (formulario) {
     formulario.addEventListener('submit', (evento) => {
         evento.preventDefault();
+        
+        // const inputs = document.querySelectorAll('input');
+        // const dados = coletarDados(inputs);
+        
+        const dados = {
+            nome: document.getElementById('nome').value,
+            cpf: document.getElementById('cpf').value,
+            email: document.getElementById('email').value,
+            senha: document.getElementById('senha').value,
+            confirmacaoSenha: document.getElementById('confirmacaoSenha').value,
+            permissao: document.querySelector('input[name="permissao"]:checked').value,
+            ativo: true
+        };
 
-        const inputs = document.querySelectorAll('input');
-        const dados = coletarDados(inputs);
+
 
         if (Object.keys(dados).length > 0) {
             console.log('Dados a serem enviados para o banco de dados:', dados);

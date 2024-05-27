@@ -3,16 +3,15 @@ package br.senac.tads.api.repository;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import br.senac.tads.api.domain.usuario.Usuario;
+import br.senac.tads.api.entities.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	public Optional<Usuario> findByEmail(String email);
+	Optional<Usuario> findByEmail(String email);
 
-	public Optional<Usuario> findById(String id);
+	public boolean existsByEmail(String email);
 
-	UserDetails findByLogin(String login);
+	Iterable<Usuario> findByNomeContaining(String nome);
 
 }

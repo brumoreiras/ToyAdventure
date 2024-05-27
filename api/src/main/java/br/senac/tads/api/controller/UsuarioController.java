@@ -1,154 +1,189 @@
 package br.senac.tads.api.controller;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.senac.tads.api.domain.usuario.CadastroUsuarioDTO;
 import br.senac.tads.api.domain.usuario.ListaUsuario;
-import br.senac.tads.api.domain.usuario.Usuario;
+import br.senac.tads.api.domain.usuario.Premissoes;
+import br.senac.tads.api.entities.Permissao;
+import br.senac.tads.api.entities.Usuario;
+import br.senac.tads.api.repository.PermissaoRepository;
 import br.senac.tads.api.repository.UsuarioRepository;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/usuario")
-
 public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository repository;
-	private final PasswordEncoder encoder;
 
-	public UsuarioController(UsuarioRepository repository, PasswordEncoder encoder) {
-		this.repository = repository;
-		this.encoder = encoder;
-	}
-
-	/*
-	 * @Transactional
-	 * 
-	 * @PostMapping("/cadastrar")
-	 * public ResponseEntity<String> cadastrarUsuario(@RequestBody
-	 * CadastroUsuarioDTO usuario) {
-	 * 
-	 * usuario.setSenha(encoder.encode(usuario.getSenha()));
-	 * 
-	 * // Verifica se o e-mail já está cadastrado
-	 * Optional<Usuario> optUsuario = repository.findByEmail(usuario.getEmail());
-	 * if (optUsuario.isPresent()) {
-	 * return
-	 * ResponseEntity.status(HttpStatus.CONFLICT).body("E-mail já cadastrado");
-	 * }
-	 * 
-	 * // Cadastra o usuário
-	 * val novoUsuario = new Usuario(usuario);
-	 * repository.save(novoUsuario);
-	 * 
-	 * // Retorna o resultado
-	 * return ResponseEntity.status(HttpStatus.CREATED).
-	 * body("Usuário cadastrado com sucesso");
-	 * 
-	 * }
-	 */
-
-	// Método para logar o usuário
-	/*
-	 * @GetMapping("/login")
-	 * public ResponseEntity<Boolean> logarUsuario(@RequestBody LogarUsuarioDTO
-	 * usuario) {
-	 * 
-	 * // Consulta o usuário no banco de dados e retorna um Usuario ou um Optional
-	 * // vazio
-	 * Optional<Usuario> optUsuario = repository.findByEmail(usuario.email());
-	 * 
-	 * // Verifica se o usuário existe
-	 * if (optUsuario.isEmpty()) {
-	 * return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
-	 * }
-	 * 
-	 * // Verifica se a senha está correta
-	 * boolean valido = encoder.matches(usuario.senha(),
-	 * optUsuario.get().getSenha());
-	 * 
-	 * // Retorna o resultado
-	 * HttpStatus status = valido ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-	 * return ResponseEntity.status(status).body(valido);
-	 * 
-	 * }
-	 */
+	@Autowired
+	private PermissaoRepository permissaoRepository;
 
 	// Método para Lista todos os usuários
 	@GetMapping
 	public ResponseEntity<Iterable<ListaUsuario>> listarUsuarios() {
 		Iterable<Usuario> usuarios = repository.findAll();
 
-		// Use record para simplificar a criação de objetos imutáveis
 		var lista = new ArrayList<ListaUsuario>();
 		for (Usuario usuario : usuarios) {
-			lista.add(new ListaUsuario(usuario.getId(), usuario.getNome(), usuario.getCpf(), usuario.getEmail(),
-					usuario.getTipo(), usuario.getAtivo()));
+			lista.add(new ListaUsuario(
+					usuario.getId().toString(),
+					usuario.getNome(),
+					usuario.getCpf(),
+					usuario.getEmail(),
+					usuario.getPermissao() != null ? usuario.getPermissao().getNome() : null,
+					usuario.getAtivo()));
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(lista);
+		return ResponseEntity.ok(lista);
 	}
 
-	// Método para editar um usuário
-	@PostMapping("/editar/{id}")
-	@Transactional
-	public ResponseEntity<String> editarUsuario(@PathVariable("id") String id, @RequestBody Usuario usuario) {
+	// Obter um usuário pelo ID
+	@GetMapping("/{id}")
+	public ResponseEntity<Usuario> obterUsuario(@PathVariable Long id) {
+		return repository.findById(id).map(usuario -> ResponseEntity.ok(usuario))
+				.orElse(ResponseEntity.notFound().build());
+	}
 
-		// Verifica se o usuário existe
-		Optional<Usuario> optUsuario = repository.findById(id);
-		if (optUsuario.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
-		}
+	// Pesquisar um usuário por nome
+	@GetMapping("/pesquisar")
+	public ResponseEntity<Iterable<Usuario>> pesquisarUsuario(@RequestBody String nome) {
+		Iterable<Usuario> usuarios = repository.findByNomeContaining(nome);
+		return ResponseEntity.ok(usuarios);
+	}
+
+	@SuppressWarnings("rawtypes")
+	@PostMapping("/cadastrar")
+	public ResponseEntity cadastrarUsuario(@RequestBody @Valid CadastroUsuarioDTO usuario) {
 
 		// Verifica se o e-mail já está cadastrado
-		Optional<Usuario> optUsuarioEmail = repository.findByEmail(usuario.getEmail());
-		if (optUsuarioEmail.isPresent() && optUsuarioEmail.get().getId() != id) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("E-mail já cadastrado");
+		if (this.repository.existsByEmail(usuario.email())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("E-mail já cadastrado");
 		}
 
-		// Verifica se a senha foi informada
-		if (usuario.getSenha() != null) {
-			usuario.setSenha(encoder.encode(usuario.getSenha()));
+		// Validação de senha e com a confirmação de senha
+		if (!usuario.senha().equals(usuario.confirmacaoSenha())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("As senhas não conferem");
+		}
+		System.out.println(usuario.permissao());
+
+		// Verifica se a permissão já existe -- falta verificar existe no Enum-
+		Permissao permissaoExistente = permissaoRepository.findByNome(usuario.permissao());
+		Permissao permissao;
+		if (permissaoExistente == null) {
+			// Adiciona a permissão se não existir
+			permissao = new Permissao(usuario.permissao());
+			permissaoRepository.save(permissao);
+		} else {
+			permissao = permissaoExistente;
 		}
 
-		// Verifica se o tipo foi informado
-		if (usuario.getTipo() == null) {
-			usuario.setTipo(optUsuario.get().getTipo());
+		// Cria um novo usuário com a permissão existente ou nova
+		String encodedPassword = new BCryptPasswordEncoder().encode(usuario.senha());
+		var novoUsuario = new Usuario(usuario.nome(), usuario.cpf(), usuario.email(), encodedPassword,
+				permissao, usuario.ativo());
+		this.repository.save(novoUsuario);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body("Usuário cadastrado com sucesso");
+	}
+
+	// Método para deletar um usuário
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
+		if (!repository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		repository.deleteById(id);
+		return ResponseEntity.noContent().build();
+	}
+
+	// Método para atualizar um usuário
+	// Apenas o administrador pode atualizar qualquer usuário
+	// outros usuários só podem atualizar a si mesmos e não podem alterar a
+	// permissão e o status
+	@SuppressWarnings("unlikely-arg-type")
+	@PutMapping("/{id}")
+	public ResponseEntity<String> atualizarUsuario(@PathVariable Long id,
+			@RequestBody Usuario usuario) {
+		if (!repository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		// Se o usuário não for administrador, ele só pode atualizar a si mesmo
+		// e não pode alterar a permissão e o status
+		if (!usuario.getPermissao().getNome().equals(Premissoes.ADMINISTRADOR)) {
+			Usuario usuarioLogado = repository.findById(id).get();
+			if (!usuarioLogado.getId().equals(usuario.getId())) {
+				return ResponseEntity.status(HttpStatus.FORBIDDEN)
+						.body("Você não tem permissão para atualizar este usuário");
+			}
+			usuario.setPermissao(usuarioLogado.getPermissao()); // Changed method call from setPermissoes() to
+																// setPermissao()
+			usuario.setAtivo(usuarioLogado.getAtivo());
 		}
 
-		// Verifica se o ativo foi informado
-		if (usuario.getAtivo() == null) {
-			usuario.setAtivo(optUsuario.get().getAtivo());
-		}
+		usuario.setId(id);
+		usuario = repository.save(usuario);
+		return ResponseEntity.ok("Usuário atualizado com sucesso");
+	}
 
-		// Verifica se o nome foi informado
-		if (usuario.getNome() == null) {
-			usuario.setNome(optUsuario.get().getNome());
-		}
+	// DTO Record para atualizar a senha de um usuário
+	public record AtualizarSenhaDTO(
+			@NotBlank(message = "Senha atual não pode ser nula ou vazia") String senhaAtual,
+			@NotBlank(message = "Nova senha não pode ser nula ou vazia") String novaSenha,
+			@NotBlank(message = "Confirmação de senha não pode ser nula ou vazia") String confirmacaoSenha) {
 
-		// Verifica se o cpf foi informado
-		if (usuario.getCpf() == null) {
-			usuario.setCpf(optUsuario.get().getCpf());
-		}
+		// Validação de senha e com a confirmação de senha
+		public AtualizarSenhaDTO {
+			if (!novaSenha.equals(confirmacaoSenha)) {
+				throw new IllegalArgumentException("As senhas não conferem");
+			}
 
-		// Atualiza o usuário
+			if (senhaAtual.equals(novaSenha)) {
+				throw new IllegalArgumentException("A nova senha não pode ser igual à senha atual");
+			}
+		}
+	}
+
+	// Método para atualizar a senha de um usuário
+	@PutMapping("/{id}/senha")
+	public ResponseEntity<String> atualizarSenha(@PathVariable Long id,
+			@RequestBody @Valid AtualizarSenhaDTO senha) {
+		Usuario usuario = repository.findById(id).get();
+		if (!new BCryptPasswordEncoder().matches(senha.senhaAtual(), usuario.getPassword())) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Senha atual inválida");
+		}
+		String encodedPassword = new BCryptPasswordEncoder().encode(senha.novaSenha());
+		usuario.setHashSenha(encodedPassword);
 		repository.save(usuario);
+		return ResponseEntity.ok("Senha atualizada com sucesso");
+	}
 
-		// Retorna o resultado
-		return ResponseEntity.status(HttpStatus.OK).body("Usuário atualizado com sucesso");
+	// Método para atualizar o status de um usuário
+	public record AtualizarStatusDTO(Boolean ativo) {
+	}
 
+	@PutMapping("/{id}/status")
+	public ResponseEntity<String> atualizarStatus(@PathVariable Long id, @RequestBody AtualizarStatusDTO status) {
+		Usuario usuario = repository.findById(id).get();
+		usuario.setAtivo(status.ativo());
+		repository.save(usuario);
+		return ResponseEntity.ok("Status atualizado com sucesso");
 	}
 }

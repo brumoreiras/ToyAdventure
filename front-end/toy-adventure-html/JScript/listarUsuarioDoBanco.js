@@ -8,16 +8,15 @@ export function gerarTabelaUsuarios(usuarios) {
     // Percorre cada usuário e cria uma linha na tabela para cada um
     usuarios.forEach(usuario => {
         // Cria uma nova linha na tabela
-        const { grupo } = JSON.parse(localStorage.getItem('usuario'));
-        const isAdmin = grupo === 'admin';
-
+        // const { grupo } = JSON.parse(localStorage.getItem('usuario'));
+        const isAdmin = usuario.permissao === 'ADMINISTRADOR';
         const row = document.createElement('tr');
 
         // Adiciona as células da linha com os dados do usuário
         row.innerHTML = `
             <td>${usuario.nome}</td>
             <td>${usuario.email}</td>
-            <td>${usuario.grupo}</td>
+            <td>${usuario.permissao}
             <td>${usuario.ativo ? 'Ativo' : 'Inativo'}</td>
             <td class="button-cell">
                     <button  class="btn__alterar open-modal" data-id="${usuario.id}">Alterar</button>
@@ -30,7 +29,7 @@ export function gerarTabelaUsuarios(usuarios) {
                 </button>
             </td>
             <td style="text-align: center;">
-                <img src="/ToyAdventure/front-end/toy-adventure-html/Images/icones/delete.svg" alt="icone de uma lixeira para deletar dados cadastrados">
+                <img src="/Images/icones/delete.svg" alt="icone de uma lixeira para deletar dados cadastrados">
             </td>
         `;
 
