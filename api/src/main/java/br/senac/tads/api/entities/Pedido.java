@@ -1,35 +1,36 @@
-package br.senac.tads.api.domain.pedido;
+package br.senac.tads.api.entities;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "pedidos")
+import br.senac.tads.api.domain.pedido.StatusPedido;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity(name = "tb_pedidos")
+@Table(name = "pedido")
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Adicione esta linha
-    @Column(name = "id_pedido")
     private Long id;
 
-    @Column(name = "data_pedido")
     private LocalDate dataPedido;
 
-    @Column(name = "valor_total")
     private BigDecimal valorTotal; // Mude de Double para BigDecimal
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
     private StatusPedido status; // Use a enum StatusPedido
 
-    @Column(name = "cliente")
     private String cliente;
 
-    @Column(name = "observacao")
     private String observacao;
 
-    @Column(name = "data_entrega")
     private LocalDate dataEntrega;
 
     // Getters and Setters
