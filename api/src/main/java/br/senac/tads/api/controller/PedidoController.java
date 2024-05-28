@@ -1,15 +1,21 @@
 package br.senac.tads.api.controller;
 
-import br.senac.tads.api.controller.PedidoController;
-import br.senac.tads.api.domain.pedido.Pedido;
-import br.senac.tads.api.domain.pedido.StatusPedido;
-import br.senac.tads.api.services.PedidoService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import br.senac.tads.api.entities.Pedido;
+import br.senac.tads.api.services.PedidoService;
 
 @RestController
 @RequestMapping("/pedidos")
