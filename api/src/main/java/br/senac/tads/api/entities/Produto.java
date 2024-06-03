@@ -10,19 +10,29 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 
-@Table(name = "produtos")
-@Entity(name = "Produto")
-@EqualsAndHashCode(of = "cod")
+@Table(name = "tb_produtos")
+@Entity(name = "produto")
+@EqualsAndHashCode(of = "id")
 public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long cod;
+	Long id;
+
+	// @NotBlank(message = "Nome obrigatório")
 	String nome;
-	String descricao;
+
+	// @NotBlank(message = "Preço obrigatório")
 	Double preco;
+
+	// @NotBlank(message = "Quantidade obrigatória")
+	Long quantidade;
+
+	String descricao;
+	String avaliacao;
 	Boolean ativo;
 
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
@@ -39,16 +49,35 @@ public class Produto {
 	public Produto() {
 	}
 
-	public Produto(Long cod, String nome, String descricao, Double preco, Boolean ativo) {
-		this.cod = cod;
+	public Produto(Long id, @NotBlank(message = "Nome obrigatório") String nome,
+			@NotBlank(message = "Preço obrigatório") Double preco,
+			@NotBlank(message = "Quantidade obrigatória") Long quantidade, String descricao, String avaliacao,
+			Boolean ativo, List<Imagem> imagens) {
+		this.id = id;
 		this.nome = nome;
-		this.descricao = descricao;
 		this.preco = preco;
+		this.quantidade = quantidade;
+		this.descricao = descricao;
+		this.avaliacao = avaliacao;
 		this.ativo = ativo;
+		this.imagens = imagens;
 	}
 
-	public Produto(Long cod, String nome, String descricao, Double preco, Boolean ativo, List<Imagem> imagens) {
-		this.cod = cod;
+	public Produto(Long id, @NotBlank(message = "Nome obrigatório") String nome,
+			@NotBlank(message = "Preço obrigatório") Double preco,
+			@NotBlank(message = "Quantidade obrigatória") Long quantidade, String descricao, String avaliacao) {
+		this.id = id;
+		this.nome = nome;
+		this.preco = preco;
+		this.quantidade = quantidade;
+		this.descricao = descricao;
+		this.avaliacao = avaliacao;
+		this.ativo = true;
+		this.imagens = null;
+	}
+
+	public Produto(Long id, String nome, String descricao, Double preco, Boolean ativo, List<Imagem> imagens) {
+		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
@@ -60,15 +89,17 @@ public class Produto {
 		this.nome = produto.nome();
 		this.descricao = produto.descricao();
 		this.preco = produto.preco();
+		this.quantidade = produto.quantidade();
+		this.avaliacao = produto.avaliacao();
 		this.ativo = true;
 	}
 
 	public Long getId() {
-		return cod;
+		return id;
 	}
 
-	public void setId(Long cod) {
-		this.cod = cod;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -103,4 +134,19 @@ public class Produto {
 		this.ativo = ativo;
 	}
 
+	public Long getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Long quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(String avaliacao) {
+		this.avaliacao = avaliacao;
+	}
 }
