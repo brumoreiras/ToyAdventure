@@ -19,8 +19,8 @@ function deletarUsuario(id) {
 			});
 			if (response.ok) {
 				modal.close();
-				console.log(`Usuário deletado com sucesso.`);
 				carregarUsuarios();
+				console.log(`Usuário deletado com sucesso.`);
 			}
 			else {
 				modal.close();
