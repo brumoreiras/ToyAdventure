@@ -40,7 +40,9 @@ public class SecurityConfigurations {
 				// .cors(cors -> cors.disable())
 				.formLogin(formLogin -> formLogin.disable())
 				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("/authenticate", "/login", "/usuario/cadastrar").permitAll()
+						auth -> auth.requestMatchers("/authenticate", "/login", "/usuario/cadastrar",
+								"/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**")
+								.permitAll()
 								.anyRequest().authenticated())
 				.httpBasic(Customizer.withDefaults())
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
