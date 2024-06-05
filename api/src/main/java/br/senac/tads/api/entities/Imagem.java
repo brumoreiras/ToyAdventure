@@ -8,7 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Entity(name = "Imagem")
+@Entity(name = "imagem")
 @Table(name = "tb_imagens")
 public class Imagem {
 
@@ -30,6 +30,11 @@ public class Imagem {
 		this.url = url;
 		this.principal = principal;
 		this.produto = produto;
+	}
+
+	public Imagem(String url, boolean principal) {
+		this.url = url;
+		this.principal = principal;
 	}
 
 	public Long getId() {
