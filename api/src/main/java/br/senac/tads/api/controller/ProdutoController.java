@@ -80,7 +80,7 @@ public class ProdutoController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<String> editarProduto(@PathVariable Long id, @RequestBody Produto produto) {
+	public ResponseEntity<String> editarProduto(@PathVariable Long id, @RequestBody CadastroProduto produto) {
 		produtoService.atualizar(id, produto);
 		return ResponseEntity.status(HttpStatus.OK).body("Produto atualizado com sucesso");
 	}

@@ -150,12 +150,15 @@ public class ProdutoService {
 	}
 
 	// Atualizar um produto
-	public Produto atualizar(Long id, Produto produto) {
+	public Produto atualizar(Long id, CadastroProduto produto) {
 		Produto produtoAtualizado = this.produtoRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Produto não encontrado"));
-		produtoAtualizado.setNome(produto.getNome());
-		produtoAtualizado.setPreco(produto.getPreco());
-		// Set other properties as needed
+
+		produtoAtualizado.setNome(produto.nome());
+		produtoAtualizado.setPreco(produto.preco());
+		produtoAtualizado.setQuantidade(produto.quantidade());
+		produtoAtualizado.setDescricao(produto.descricao());
+		produtoAtualizado.setAvaliacao(produto.avaliacao());
 
 		return this.produtoRepository.save(produtoAtualizado);
 	}
