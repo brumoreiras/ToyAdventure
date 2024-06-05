@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import br.senac.tads.api.domain.produto.CadastroProduto;
+import br.senac.tads.api.domain.produto.ImagemEnvio;
 import br.senac.tads.api.domain.produto.ListarProduto;
 import br.senac.tads.api.domain.produto.ProdutoView;
 import br.senac.tads.api.entities.Imagem;
@@ -35,26 +36,28 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoService produtoService;
 
-	@GetMapping
-	public ResponseEntity<List<ProdutoView>> listarProdutos() {
-		List<ProdutoView> produtos = produtoService.listarProdutos();
-		return ResponseEntity.ok(produtos);
-	}
-
-	// Obter ProdutO PAGINADO EM 10 ITENS
-	@GetMapping("/page/{page}")
-	public ResponseEntity<List<ListarProduto>> listarProdutosPaginado(@PathVariable int page) {
-		List<ListarProduto> produtos = produtoService.listarProdutosPaginado(page);
-		return ResponseEntity.ok(produtos);
-	}
+	/*
+	 * @GetMapping("/listar")
+	 * public ResponseEntity<List<ProdutoView>> listarProdutos() {
+	 * List<ProdutoView> produtos = produtoService.listarProdutos();
+	 * return ResponseEntity.ok(produtos);
+	 * }
+	 * 
+	 */
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Produto> buscarProduto(@PathVariable Long id) {
-		Produto produto = produtoService.buscarPorId(id);
-		if (produto == null || produto.getId() == null) {
-			return ResponseEntity.notFound().build();
-		}
+	public ResponseEntity<ProdutoView> visualizarProduto(@PathVariable Long id) {
+		System.out.println("ID: " + id);
+		ProdutoView produto = produtoService.visualizarProduto(id);
 		return ResponseEntity.ok(produto);
+	}
+
+	// Obter ProdutO PAGINADO EM 10 ITENS - RESQUEST PARAM
+	@GetMapping()
+	public ResponseEntity<List<ListarProduto>> listarProdutosPaginado(@RequestParam(defaultValue = "1") int pagina,
+			@RequestParam(defaultValue = "") String busca) {
+		List<ListarProduto> produtos = produtoService.listarProdutosPaginado(pagina, busca);
+		return ResponseEntity.ok(produtos);
 	}
 
 	@PostMapping()
@@ -65,9 +68,9 @@ public class ProdutoController {
 	}
 
 	@PostMapping(value = "/{id}/imagens", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public Imagem adicionarImagem(@PathVariable Long id, @RequestParam("file") MultipartFile file,
-			@RequestParam("principal") boolean principal) throws IOException {
-		return produtoService.salvarImagem(id, file, principal);
+	public Imagem adicionarImagem(@PathVariable Long id, @RequestBody @ModelAttribute ImagemEnvio imagem)
+			throws IOException {
+		return produtoService.salvarImagem(id, imagem.getImagem(), imagem.isPrincipal());
 	}
 
 	@DeleteMapping("/{id}")
@@ -82,13 +85,22 @@ public class ProdutoController {
 		return ResponseEntity.status(HttpStatus.OK).body("Produto atualizado com sucesso");
 	}
 
-	@PostMapping("/visualizar/{id}")
-	public ResponseEntity<ProdutoView> visualizarProduto(Long id) {
-		ProdutoView produto = produtoService.visualizarProduto(id);
-		return ResponseEntity.ok(produto);
+	@PutMapping("/{id}/status")
+	public ResponseEntity<String> alterarStatus(@PathVariable Long id, @RequestBody Boolean ativo) {
+		produtoService.alterarStatus(id, ativo);
+		return ResponseEntity.status(HttpStatus.OK).body("Status alterado com sucesso");
 	}
 
 	/*
+	 * @GetMapping("/{id}")
+	 * public ResponseEntity<Produto> buscarProduto(@PathVariable Long id) {
+	 * Produto produto = produtoService.buscarPorId(id);
+	 * if (produto == null || produto.getId() == null) {
+	 * return ResponseEntity.notFound().build();
+	 * }
+	 * return ResponseEntity.ok(produto);
+	 * }
+	 * 
 	 * @PostMapping("/cadastrar")
 	 * public ResponseEntity<String> cadastrarProduto(@RequestBody CadastroWrapper
 	 * produto) throws IOException {

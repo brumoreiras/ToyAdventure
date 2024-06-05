@@ -12,7 +12,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	@SuppressWarnings("null")
 	public Optional<Produto> findById(Long id);
 
-	@Query(value = "SELECT * FROM tb_produtos ORDER BY id DESC LIMIT ?1 OFFSET ?2", nativeQuery = true)
-	public List<Produto> listarProdutosPaginado(int offset, int pageSize);
+	@Query(value = "SELECT * FROM tb_produtos WHERE nome LIKE %?3% ORDER BY nome LIMIT ?2 OFFSET ?1", nativeQuery = true)
+	public List<Produto> listarProdutosPaginado(int offset, int pageSize, String busca);
 
 }
