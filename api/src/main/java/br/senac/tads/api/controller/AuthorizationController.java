@@ -27,10 +27,12 @@ public class AuthorizationController {
 	@Autowired
 	private AuthenticationService authenticationService;
 
-	@PostMapping("authenticate")
-	public String authenticate(Authentication authentication) {
-		return authenticationService.authenticate(authentication);
-	}
+	/*
+	 * @PostMapping("authenticate")
+	 * public String authenticate(Authentication authentication) {
+	 * return authenticationService.authenticate(authentication);
+	 * }
+	 */
 
 	@PostMapping("login")
 	public ResponseEntity<LoginResponseDTO> login(@RequestBody LogarUsuarioDTO usuario) {
