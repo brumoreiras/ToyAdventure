@@ -9,11 +9,11 @@
     <link rel="stylesheet" type="text/css" href="../Styles/styles-alterar-dados.css" />
     <link rel="stylesheet" type="text/css" href="../Styles/styles-cadastrar-usuario.css" />
     <link rel="stylesheet" type="text/css" href="../Styles/styles-listar-produtos.css" />
-    <title>ToyAdventure - Lista de usuário</title>
+    <title>ToyAdventure - Lista de Pedidos</title>
 </head>
 
 <body>
-    <header class="header"> <!-- Implementar logica para quando estiver logado aparecer o nome do usuario -->
+    <header class="header">
         <img src="../Images/icones/Logo.png" alt="Logo ToyAdventure">
         <div class="container__profile">
             <a href="#" id="profile-link">
@@ -33,24 +33,24 @@
             <nav class="menu__bar">
                 <a class="container__options__home" href="painel-de-controle.html"><img src="../Images/icones/home.svg"
                         alt="Ícone home" />Home</a>
-                <a class="container__options__produto" href="#"> <img src="../Images/icones/box.svg"
+                <a class="container__options__produto" href="#"><img src="../Images/icones/box.svg"
                         alt="Ícone Produtos" />Produtos</a>
                 <a class="container__options__user" href="listar-usuario.html"><img
                         src="../Images/icones/profile-person.svg" alt="Ícone Usuário" />Usuário</a>
-                <a class="container__options__pedido" href="listar-pedidos"><img src="../Images/icones/bag.svg"
+                <a class="container__options__pedido" href="listar-pedidos.html"><img src="../Images/icones/bag.svg"
                         alt="Ícone Pedidos" />Pedidos</a>
-
             </nav>
         </div>
 
         <div class="container__list">
             <div style="align-items: baseline;" class="container__list__header">
                 <h1>Consultar Pedidos</h1>
-                <input style="width: 60%; padding: 10px;" type="text" placeholder="Pesquisar usuário" />
-                
+                <input id="search-input" style="width: 60%; padding: 10px;" type="text"
+                    placeholder="Pesquisar pedido por ID" />
+                <button id="search-button" style="padding: 10px;">Pesquisar</button>
             </div>
             <div class="container__table container__table__produto">
-                <h2>Lista de Pedidos </h2>
+                <h2>Lista de Pedidos</h2>
                 <div class="table-container">
                     <table id="my-table">
                         <thead class="table__header table__header__produto">
@@ -62,37 +62,10 @@
                                 <th style="text-align: center;">Valor total</th>
                                 <th style="text-align: center;">Status do pedido</th>
                                 <th style="text-align: center;">Alterar</th>
-                                <th>Mais detalhes e ações</th>                                
+                                <th>Mais detalhes e ações</th>
                             </tr>
                         </thead>
                         <tbody id="create_list_produto">
-                            <tr>
-                                <td>01</td>
-                                <td>12/02/2024</td>
-                                <td>12/02/2024</td>
-                                <td>02</td>
-                                
-                                <td>
-                                    R$ 200,00
-                                </td>
-                                <td>
-                                   Aguardando pagamento
-                                </td>
-                                <td style="text-align: center;" className="button-cell">
-                                    <a class="btn__alterar" href="alterar-dados.html">Alterar</a>
-                                </td>
-                                <td style="text-align: center;">
-                                    <a href="../../Ecommerce/Pages/detalhe-produto.html"><img
-                                            src="../Images/icones/inventory.svg" alt=""></a>
-
-
-                                    <img src="/ToyAdventure/front-end/toy-adventure-html/Images/icones/delete.svg"
-                                        alt="icone de uma lixeira para deletar dados cadastrados">
-
-                                   
-                                </td>
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -103,9 +76,7 @@
                 </div>
             </div>
         </div>
-
     </section>
-
 
     <script type="module" src="../JScript/listarUsuarioDoBanco.js"></script>
     <script type="module" src="../JScript/Requests/listarUsuario.js"></script>
@@ -115,6 +86,7 @@
     <script type="module" src="../JScript/Requests/alterarStatus.js"></script>
     <script type="module" src="../JScript/header.js"></script>
     <script type="module" src="../JScript/paginacao.js"></script>
+    <script type="module" src="../JScript/Requests/listarPedidos.js"></script>
 </body>
 
 </html>
