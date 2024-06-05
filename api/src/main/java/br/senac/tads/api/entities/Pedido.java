@@ -12,8 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity(name = "tb_pedidos")
-@Table(name = "pedido")
+@Entity(name = "pedido")
+@Table(name = "tb_pedidos")
 public class Pedido {
 
     @Id
