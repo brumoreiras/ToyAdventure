@@ -1,14 +1,15 @@
 package br.senac.tads.api.services;
 
-import br.senac.tads.api.domain.pedido.Pedido;
-import br.senac.tads.api.domain.pedido.StatusPedido;
-import br.senac.tads.api.repository.PedidoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.senac.tads.api.domain.pedido.StatusPedido;
+import br.senac.tads.api.entities.Pedido;
+import br.senac.tads.api.repository.PedidoRepository;
 
 @Service
 public class PedidoService {

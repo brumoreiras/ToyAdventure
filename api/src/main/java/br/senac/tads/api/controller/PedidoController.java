@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.senac.tads.api.domain.pedido.Pedido;
+import br.senac.tads.api.entities.Pedido;
 import br.senac.tads.api.services.PedidoService;
 
 @RestController

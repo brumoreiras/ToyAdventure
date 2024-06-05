@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import br.senac.tads.api.domain.pedido.StatusPedido;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,37 +18,39 @@ import jakarta.persistence.Table;
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Adicione esta linha
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedido")
+    private Long idPedido;
 
+    @Column(name = "data_pedido")
     private LocalDate dataPedido;
 
-    private BigDecimal valorTotal; // Mude de Double para BigDecimal
+    @Column(name = "valor_total")
+    private BigDecimal valorTotal;
 
     @Enumerated(EnumType.STRING)
-    private StatusPedido status; // Use a enum StatusPedido
+    @Column(name = "status")
+    private StatusPedido status;
 
+    @Column(name = "cliente")
     private String cliente;
 
+    @Column(name = "observacao")
     private String observacao;
 
+    @Column(name = "data_entrega")
     private LocalDate dataEntrega;
 
-    // Getters and Setters
-    public LocalDate getDataEntrega() {
-        return dataEntrega;
+    @Column(name = "quantidade")
+    private Integer quantidade;
+
+    // Getters e Setters
+    public Long getIdPedido() {
+        return idPedido;
     }
 
-    public void setDataEntrega(LocalDate dataEntrega) {
-        this.dataEntrega = dataEntrega;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdPedido(Long idPedido) {
+        this.idPedido = idPedido;
     }
 
     public LocalDate getDataPedido() {
@@ -88,5 +91,35 @@ public class Pedido {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public LocalDate getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(LocalDate dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "idPedido=" + idPedido +
+                ", dataPedido=" + dataPedido +
+                ", valorTotal=" + valorTotal +
+                ", status=" + status +
+                ", cliente='" + cliente + '\'' +
+                ", observacao='" + observacao + '\'' +
+                ", dataEntrega=" + dataEntrega +
+                ", quantidade=" + quantidade +
+                '}';
     }
 }
