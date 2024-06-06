@@ -27,8 +27,8 @@ function fillProfileMenu(usuario) {
 }
 
 // Supondo que você tenha as informações do usuário armazenadas no localStorage
-const usuario = JSON.parse(localStorage.getItem('usuario'));
+// const usuario = JSON.parse(localStorage.getItem('usuario'));
 
-if (usuario) {
-    fillProfileMenu(usuario);
-}
+// if (usuario) {
+//     fillProfileMenu(usuario);
+// }

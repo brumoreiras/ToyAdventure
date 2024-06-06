@@ -60,7 +60,6 @@ function obterImagens() {
             });
         }
     });
-
     return fotos;
 }
 
@@ -82,11 +81,11 @@ function cadastrarProduto() {
     const token = localStorage.getItem('token');
 
     const id = async () => {
-        const response = await fetch('http://localhost:8080/produtos', {
+        const response = await fetch('https://toyadventure.onrender.com/produtos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(produto)
         });
@@ -104,22 +103,25 @@ function cadastrarProduto() {
         return;
     }
 
+
     id().then(data => {
         console.log(data);
+        var arquivo = document.querySelector('input[type="file"]').files[0];
         imagens.forEach(function (foto) {
             if (foto.file) {
 
                 var formData = new FormData();
-                formData.append('file', foto.file);
-               
+                formData.append('imagem', arquivo);
+                formData.append('principal', foto.principal);
+
 
                 console.log(...formData.entries());
                 // debugger;
 
-                fetch(`http://localhost:8080/produtos/${data}/imagens?principal=${foto.principal}`, {
+                fetch(`https://toyadventure.onrender.com/produtos/${data}/imagens`, {
                     method: 'POST',
                     headers: {
-                        // 'Authorization': `Bearer ${token}`
+                        'authorization': `Bearer ${token}`,
                     },
                     body: formData
                 })
@@ -153,7 +155,7 @@ function cadastrarProduto() {
     // console.log(dados.get('produto'));
     // console.log(dados.get('files'));
 
-    // fetch('http://localhost:8080/produtos/teste', {
+    // fetch('https://toyadventure.onrender.com/produtos/teste', {
     //     method: 'POST',
     //     headers: {
     //         // 'Authorization': `Bearer ${token}`,

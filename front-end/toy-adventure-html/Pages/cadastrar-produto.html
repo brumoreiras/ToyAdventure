@@ -41,7 +41,7 @@
 
         <div class="container__list">
 
-            <form action="" class="container__forms">
+            <form action="" class="container__forms" enctype="multipart/form-data">
                 <h1>Cadastrar produto no sistema</h1>
                 <h2>Dados cadastrais</h2>
 
@@ -53,7 +53,7 @@
                         <div class="login-container">
                             <div class="input-wrapper">
                                 <label class="label__input">Nome do Produto</label>
-                                <input class="input__forms" type="text" value="" placeholder="Nome do produto"
+                                <input class="input__forms" type="text" id="nome_produto" value="" placeholder="Nome do produto"
                                     data-tipo="nome_produto" required style="width: 100%;">
                                 <span class="mensagem-erro"></span>
                             </div>
@@ -61,7 +61,7 @@
                         <div class="login-container">
                             <div class="input-wrapper">
                                 <label class="label__input">Preço</label>
-                                <input class="input__forms input-small" type="text" value="" placeholder="Preço"
+                                <input class="input__forms input-small" id="preco_produto" type="number" value="" placeholder="Preço"
                                     data-tipo="preco" required style="width: 100%;">
                                 <span class="mensagem-erro"></span>
                             </div>
@@ -69,14 +69,12 @@
                         <div class="login-container">
                             <div class="input-wrapper">
                                 <label class="label__input">Quantidade</label>
-                                <input class="input__forms input-quantidade" type="text" value=""
+                                <input class="input__forms input-quantidade" id="quantidade_produto" type="number" value="" min="1"
                                     placeholder="Quantidade" data-tipo="quantidade" required style="width: 100%;">
                                 <span class="mensagem-erro"></span>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="container__grupo">
                     <span>Detalhes do Produto</span>
@@ -84,7 +82,7 @@
                         <div class="login-container">
                             <div class="input-wrapper">
                                 <label class="label__input">Avaliação</label>
-                                <input class="input__forms input_avaliacao" type="text" value="" placeholder="Avaliação"
+                                <input class="input__forms input_avaliacao" id="avaliacao_produto" type="text" value="" placeholder="Avaliação"
                                     data-tipo="avaliacao" required>
                                 <span class="mensagem-erro"></span>
                             </div>
@@ -100,20 +98,11 @@
                     <div class="login-container">
                         <div class="input-wrapper">
                             <label class="label__input">Descrição</label>
-                            <input class="input__forms input__desc" type="descrição" value="" placeholder=""
+                            <input class="input__forms input__desc" id="descricao_produto" type="descrição" value="" placeholder=""
                                 data-tipo="descricao" required>
                             <span class="mensagem-erro"></span>
                         </div>
                     </div>
-                    <!-- <div class="login-container">
-                        <div class="input-wrapper">
-                            <label class="label__input">Confirme sua e-mail</label>
-                            <input class="input__forms" data-tipo="confirmeEmail" type="email" value=""
-                                placeholder="Confirme sua e-mail" data-tipo="confirmeEmail" required>
-                            <span class="mensagem-erro"></span>
-                        </div>
-                    </div> -->
-
                 </div>
 
                 <div class="titulo">
@@ -121,10 +110,9 @@
                 </div>
 
                 <div class="container__imagens">
-                    <input type="file" id="inputImagem" accept="image/*" style="display: none;"
-                        onchange="mostrarImagem(this)">
-                    <button id="btnUploadImagem"
-                        onclick="document.getElementById('inputImagem').click()">Upload</button>
+                    <input type="file" id="inputFile" accept="image/*" style="display: none;">
+                    <button id="btnUploadImagem">Upload</button>
+                        
                 </div>
 
                 <div class="container__addimg">
@@ -139,7 +127,7 @@
 
 
                 <div class="container__btn">
-                    <button class="btn__ativar" href="alterar-dados.html">Salvar</button>
+                    <button class="btn__ativar" href="alterar-dados.html" onclick="cadastrarProduto()">Salvar</button>
                     <button class="btn__desativar" href="../Pages/listar-usuario.html">Cancelar</button>
                 </div>
 
@@ -149,10 +137,9 @@
         </div>
     </section>
 
-    <script type="module" src="../JScript/coletarDados.js"></script>
-    <script type="module" src="../JScript/inputValidation.js"></script>
-    <script type="module" src="../JScript/Requests/cadastrarUsuario.js"></script>
-    <script>
+    <script src="../JScript/produto.js"></script>
+    <!-- <script type="module" src="../JScript/inputValidation.js"></script> -->
+<!--     <script>
         function mostrarImagem(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -203,7 +190,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-    </script>
+    </script> -->
 
 
 
